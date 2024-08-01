@@ -1,0 +1,7 @@
+.vscode
+jsconfig.json
+types
+
+assets/char/old/
+*.psd
+*.blend*

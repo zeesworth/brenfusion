@@ -1,0 +1,314 @@
+.main {
+    display: flex;
+    min-height: 96vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Jokerman", "Papyrus";
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #42e5ff;
+    color: #d71777;
+    font-size: x-large;
+    text-shadow: 8px 9px 5px #0000ff;
+}
+
+.banner {
+    margin-bottom: 0;
+    margin-top: -15px;
+    z-index: 10;
+}
+
+.mainView {
+    box-shadow: -6px -8px 20px 18px red;
+    width: 640px;
+    height: 480px;
+    background-color: black;
+}
+
+.loading {
+    color: #7bff07;
+    text-shadow: 0 0 9px #9cdd1d, 3px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000;
+    background-color: #080726;
+    width: 640px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(assets/loading-bg.jpg);
+}
+
+.loadInfo {
+    margin-left: 15px;
+}
+.loadInfo p {
+    margin: 0px;
+}
+
+.js-needed {
+    color: #ff0707;
+    text-shadow: 0 0 9px #dd1d1d, 3px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000;
+    background-color: #080726;
+    width: 640px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(assets/loading-bg.jpg);
+}
+
+
+.error {
+    color: #0035ff;
+    transform: scale(2);
+    text-shadow: 0 0 9px #0400ff, 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+    font-family: "Brush Script MT", "Lucida Handwriting", "Monotype Corsiva", cursive;
+    text-transform: capitalize;
+    font-weight: lighter;
+}
+
+select {
+    font-family: "Impact", fantasy;
+    text-transform: uppercase;
+    font-size: large;
+    background-color: gold;
+    border: 3px solid #00ff43;
+    box-shadow: 1px 1px 8px 3px #82ffbf;
+    touch-action: manipulation;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    color: black;
+}
+button {
+    font-family: "Impact", fantasy;
+    text-transform: uppercase;
+    font-size: large;
+    background-color: gold;
+    border: 3px solid #00ff43;
+    box-shadow: 1px 1px 8px 3px #82ffbf;
+    touch-action: manipulation;
+    color: black;
+}
+input::file-selector-button {
+    margin-top: -20px;
+    font-family: "Impact", fantasy;
+    text-transform: uppercase;
+    font-size: large;
+    background-color: gold;
+    border: 3px solid #00ff43;
+    box-shadow: 1px 1px 8px 3px #82ffbf;
+    color: black;
+    touch-action: manipulation;
+}
+input {
+    font-family: "Brush Script MT", "Lucida Handwriting", "Monotype Corsiva", cursive;
+    font-size: x-large;
+    text-overflow: ellipsis;
+    width: 250px;
+    white-space: nowrap;
+    touch-action: manipulation;
+}
+progress {
+    border-radius: 0px;
+    height: 22px;
+    border: 0px;
+    background-color: #fff000;
+    box-shadow: -2px 2px 0px 5px red;
+
+    -webkit-appearance: none;
+   appearance: none;
+}
+progress::-webkit-progress-bar {
+    background-color: yellow;
+}
+progress::-moz-progress-bar {
+    background-color: #00ff00;
+    border-right: 2px solid #55ffef;
+}
+progress::-webkit-progress-value {
+    background-color: #00ff00;
+    border-right: 2px solid #55ffef;
+}
+
+canvas {
+    image-rendering: optimizeSpeed;             /* Older versions of FF          */
+    image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+    image-rendering: -webkit-optimize-contrast; /* Safari                        */
+    image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+    image-rendering: pixelated;                 /* Awesome future-browsers       */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+  }
+
+.bottom {
+    display: inline-block;
+    width: 650px;
+    margin-top: 20px;
+}
+
+.pickers {
+    float: left;
+}
+.pickers label {
+    width: 90px;
+    display: inline-block;
+}
+
+.pickers-header {
+    display: flex;
+}
+.pickers-header button {
+    margin-left: auto;
+}
+
+.pickers-main {
+    width: fit-content;
+}
+
+.pickers-buttons {
+    margin-top: 5px;
+}
+.pickers-buttons button {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.backgrounds {
+    width: 300px;
+    float: right;
+}
+
+.backgrounds button {
+    width: 60px;
+    height: 60px;
+    border-width: 2px;
+    border-style: solid;
+    margin: 2px;
+    border-color: black;
+    box-shadow: none;
+}
+
+.backgrounds button.selected {
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.bgPickerHeader {
+    margin: 0px;
+    line-height: 12px;
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+h1 {
+    margin: 0px;
+    color: black;
+    text-shadow: -3px 2px 7px #ffffff;
+    font-size: medium;
+}
+
+.credits {
+    width: 700px;
+    white-space: nowrap;
+}   
+
+.credits-section {
+    margin-bottom: 20px;
+    display: table;
+}
+
+.credits-programming {
+    width: 350px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.credits-chars {
+    float: left;
+    width: 350px;
+}
+.credits-bgs {
+    float: right;
+    width: 350px;
+    text-align: right;
+}
+.credits-music {
+    float: left;
+    width: 350px;
+    margin-top: -25px;
+}
+
+.credits-bg-entry {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.credits-bg-entry img {
+    width: 50px;
+    margin-left: 15px;
+    box-shadow: -3px -3px 5px 0px #2000ff;
+  }
+
+.credits-top-header {
+    text-align: center;
+}
+
+.credits-list h1 {
+    font-size: 18px;
+}
+
+.credits-list p, .credits-list a {
+    color: #bc007b;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: -8px -6px 5px #2098ff;
+    display: inline;
+    margin: 0px;
+}
+
+.credits-char-name {
+    font-size: 22px;
+    color: #02009f;
+    font-weight: normal;
+    display: inline;
+}
+
+.credits-music-entry {
+    width: fit-content;
+    margin-bottom: 20px;
+}
+.credits-music-title {
+    display: block !important;
+    block-size: 18px;
+}
+.credits-music-composer-name,
+.credits-music-composer {
+    display: inline !important;
+    margin: 0px;
+    color: #801240 !important;
+    font-size: 15px !important;
+}
+.credits-music-composer {
+    font-weight: normal !important;
+}
+.credits-music-composer-entry {
+    display: block;
+    margin-bottom: -15px;
+}
+
+.report-issues {
+    font-size: initial;
+    margin-top: 20px;
+}
+.report-issues p {
+    display: inline;
+    color: #bc007b;
+}
+.report-issues a {
+    color: #d71777;
+}

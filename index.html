@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>BRENFUSION</title>
+    <script src="p5.min.js" type="text/javascript"></script>
+    <script src="p5.clickable.js" type="text/javascript"></script>
+    <script src="soundjs-NEXT.min.js" type="text/javascript"></script>
+    <script src="preloadjs-NEXT.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+    <noscript>
+      <style>
+        .js-only {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div class="main">
+      <div class="banner"><img src="assets/logo.gif" alt="BRENFUSION"/></div>
+
+      <div id="mainView" class="mainView">
+        <div id="p5_loading" class="loading">
+          <div class="loadInfo js-only">
+            <p id="loadText">SHIT'S LOADING YO</p>
+            <progress id="preloadProgress" value="0" max="1"></progress>
+          </div>
+          <noscript class="js-needed">YOU NEED JAVASCRIPT</noscript>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="pickers">
+          <div class="pickers-main">
+            <div class="pickers-header">
+              <h1>body parts</h1><button onclick="randomizeBodyParts()">Randomize</button>
+            </div>
+            <label id="headPickLabel" for="headPick">Head</label>
+            <select id="headPick" onchange="changeHeadPick(this)">
+              <option value="9" selected>Heather</option>
+              <option value="10">Leeby Skeeby</option>
+              <option value="3">Austrol</option>
+              <option value="4">Herman</option>
+              <option value="20">Soda</option>
+              <option value="2">Bekzii</option>
+              <option value="23">Ash</option>
+              <option value="5">July</option>
+              <option value="6">Boomhauer</option>
+              <option value="7">Hazel</option>
+              <option value="8">Moth</option>
+              <option value="11">Cate</option>
+              <option value="12">Sherm</option>
+              <option value="13">Sean</option>
+              <option value="14">Violet</option>
+              <option value="15">Boots</option>
+              <option value="16">Ollie</option>
+              <option value="19">Iron Wrangler</option>
+              <option value="17">Kiwi</option>
+              <option value="18">Ware</option>
+              <option value="21">Roxy</option>
+              <option value="22">Justo</option>
+              <option value="25">Brick</option>
+              <option value="24">RAC-BOT</option>
+            </select>
+            <br>
+            <label id="hairPickLabel" for="hairPick">Hair</label>
+            <select id="hairPick" onchange="changeHairPick(this)">
+              <option value="-1">None</option>
+              <option value="9" selected>Heather</option>
+              <option value="10">Leeby Skeeby</option>
+              <option value="3">Austrol</option>
+              <option value="4">Herman</option>
+              <option value="20">Soda</option>
+              <option value="2">Bekzii</option>
+              <option value="23">Ash</option>
+              <option value="5">July</option>
+              <option value="6">Boomhauer</option>
+              <option value="7">Hazel</option>
+              <option value="8">Moth</option>
+              <option value="11">Cate</option>
+              <option value="12">Sherm</option>
+              <option value="13">Sean</option>
+              <option value="14">Violet</option>
+              <option value="15">Boots</option>
+              <option value="16">Ollie</option>
+              <option value="19">Iron Wrangler</option>
+              <option value="17">Kiwi</option>
+              <option value="18">Ware</option>
+              <option value="21">Roxy</option>
+              <option value="22">Justo</option>
+              <option value="25">Brick</option>
+              <option value="24">RAC-BOT</option>
+            </select>
+            <br>
+            <label id="torsoPickLabel" for="torsoPick">Torso</label>
+            <select id="torsoPick" onchange="changeTorsoPick(this)">
+              <option value="9" selected>Heather</option>
+              <option value="10">Leeby Skeeby</option>
+              <option value="3">Austrol</option>
+              <option value="4">Herman</option>
+              <option value="20">Soda</option>
+              <option value="2">Bekzii</option>
+              <option value="23">Ash</option>
+              <option value="5">July</option>
+              <option value="6">Boomhauer</option>
+              <option value="7">Hazel</option>
+              <option value="8">Moth</option>
+              <option value="11">Cate</option>
+              <option value="12">Sherm</option>
+              <option value="13">Sean</option>
+              <option value="14">Violet</option>
+              <option value="15">Boots</option>
+              <option value="16">Ollie</option>
+              <option value="19">Iron Wrangler</option>
+              <option value="17">Kiwi</option>
+              <option value="18">Ware</option>
+              <option value="21">Roxy</option>
+              <option value="22">Justo</option>
+              <option value="25">Brick</option>
+              <option value="24">RAC-BOT</option>
+            </select>
+            <br>
+            <label id="armsPickLabel" for="armsPick">Arms</label>
+            <select id="armsPick" onchange="changeArmsPick(this)">
+              <option value="-1">None</option>
+              <option value="9" selected>Heather</option>
+              <option value="10">Leeby Skeeby</option>
+              <option value="3">Austrol</option>
+              <option value="4">Herman</option>
+              <option value="20">Soda</option>
+              <option value="2">Bekzii</option>
+              <option value="23">Ash</option>
+              <option value="5">July</option>
+              <option value="6">Boomhauer</option>
+              <option value="7">Hazel</option>
+              <option value="8">Moth</option>
+              <option value="11">Cate</option>
+              <option value="12">Sherm</option>
+              <option value="13">Sean</option>
+              <option value="14">Violet</option>
+              <option value="15">Boots</option>
+              <option value="16">Ollie</option>
+              <option value="19">Iron Wrangler</option>
+              <option value="17">Kiwi</option>
+              <option value="18">Ware</option>
+              <option value="21">Roxy</option>
+              <option value="22">Justo</option>
+              <option value="25">Brick</option>
+              <option value="24">RAC-BOT</option>
+            </select>
+            <br>
+            <label id="legsPickLabel" for="legsPick">Legs</label>
+            <select id="legsPick" onchange="changeLegsPick(this)">
+              <option value="-1">None</option>
+              <option value="9" selected>Heather</option>
+              <option value="10">Leeby Skeeby</option>
+              <option value="3">Austrol</option>
+              <option value="4">Herman</option>
+              <option value="20">Soda</option>
+              <option value="2">Bekzii</option>
+              <option value="23">Ash</option>
+              <option value="5">July</option>
+              <option value="6">Boomhauer</option>
+              <option value="7">Hazel</option>
+              <option value="8">Moth</option>
+              <option value="11">Cate</option>
+              <option value="12">Sherm</option>
+              <option value="13">Sean</option>
+              <option value="14">Violet</option>
+              <option value="15">Boots</option>
+              <option value="16">Ollie</option>
+              <option value="19">Iron Wrangler</option>
+              <option value="17">Kiwi</option>
+              <option value="18">Ware</option>
+              <option value="21">Roxy</option>
+              <option value="22">Justo</option>
+              <option value="25">Brick</option>
+              <option value="24">RAC-BOT</option>
+            </select>
+          </div>
+          <div class="pickers-buttons">
+            <button onclick="queueSaveCharacterImage()">save my lovely beast</button>
+            <button id="danceButton" onclick="toggleDance()">do a little dance</button>
+          </div>
+        </div>
+        <div class="backgrounds">
+          <h1>Backgrounds</h1> 
+
+          <p class="bgPickerHeader">PICK YOUR OWN</p>
+          <input type="file" id="bgImagePicker" onchange="handleBgImage(this)" accept="image/*" aria-label="Custom background image"><br>
+
+          <button class="selected" id="bgbutton-0"  style="background: url(assets/bgs/thumbs/bg0.jpg)"  onclick="selectBg(0)"  aria-label="Background 1" ></button>
+          <button class=""         id="bgbutton-1"  style="background: url(assets/bgs/thumbs/bg1.jpg)"  onclick="selectBg(1)"  aria-label="Background 2" ></button>
+          <button class=""         id="bgbutton-2"  style="background: url(assets/bgs/thumbs/bg2.jpg)"  onclick="selectBg(2)"  aria-label="Background 3" ></button>
+          <button class=""         id="bgbutton-3"  style="background: url(assets/bgs/thumbs/bg3.jpg)"  onclick="selectBg(3)"  aria-label="Background 4" ></button>
+          <button class=""         id="bgbutton-4"  style="background: url(assets/bgs/thumbs/bg4.jpg)"  onclick="selectBg(4)"  aria-label="Background 5" ></button>
+          <button class=""         id="bgbutton-5"  style="background: url(assets/bgs/thumbs/bg5.jpg)"  onclick="selectBg(5)"  aria-label="Background 6" ></button>
+          <button class=""         id="bgbutton-6"  style="background: url(assets/bgs/thumbs/bg6.jpg)"  onclick="selectBg(6)"  aria-label="Background 7" ></button>
+          <button class=""         id="bgbutton-7"  style="background: url(assets/bgs/thumbs/bg7.jpg)"  onclick="selectBg(7)"  aria-label="Background 8" ></button>
+          <button class=""         id="bgbutton-8"  style="background: url(assets/bgs/thumbs/bg8.jpg)"  onclick="selectBg(8)"  aria-label="Background 9" ></button>
+          <button class=""         id="bgbutton-9"  style="background: url(assets/bgs/thumbs/bg9.jpg)"  onclick="selectBg(9)"  aria-label="Background 10"></button>
+          <button class=""         id="bgbutton-10" style="background: url(assets/bgs/thumbs/bg10.jpg)" onclick="selectBg(10)" aria-label="Background 11"></button>
+          <button class=""         id="bgbutton-11" style="background: url(assets/bgs/thumbs/bg11.jpg)" onclick="selectBg(11)" aria-label="Background 12"></button>
+          <button class=""         id="bgbutton-12" style="background: url(assets/bgs/thumbs/bg12.jpg)" onclick="selectBg(12)" aria-label="Background 13"></button>
+          <button class=""         id="bgbutton-13" style="background: url(assets/bgs/thumbs/bg13.jpg)" onclick="selectBg(13)" aria-label="Background 14"></button>
+          <button class=""         id="bgbutton-14" style="background: url(assets/bgs/thumbs/bg14.jpg)" onclick="selectBg(14)" aria-label="Background 15"></button>
+          <button class=""         id="bgbutton-15" style="background: url(assets/bgs/thumbs/bg15.jpg)" onclick="selectBg(15)" aria-label="Background 16"></button>
+          <button class=""         id="bgbutton-16" style="background: url(assets/bgs/thumbs/bg16.jpg)" onclick="selectBg(16)" aria-label="Background 17"></button>
+        </div>
+      </div>
+
+      <div class="credits">
+        <details>
+          <summary class="credits-top-header">CREDITS</summary>
+          <div class="credits-section credits-list credits-programming">
+            <h1>PROGRAMMING:</h1>
+            <a href="https://twitter.com/fuzzedmarz">bekzii</a><br>
+          </div>
+          <div class="credits-section">
+            <div class="credits-list credits-chars">
+              <h1>CHARACTERS:</h1>
+              <h2 class="credits-char-name">Heather: </h2><a href="https://twitter.com/ruduraro" target=”_blank”>ruduraro</a><br>
+              <h2 class="credits-char-name">Leeby Skeeby: </h2><a href="https://twitter.com/accentaigu_tw" target=”_blank”>lee</a><br>
+              <h2 class="credits-char-name">Austrol: </h2><a href="https://twitter.com/Austr0l" target=”_blank”>austrol</a><br>
+              <h2 class="credits-char-name">Herman: </h2><a href="https://twitter.com/herbkuffer" target=”_blank”>Clanky</a><br>
+              <h2 class="credits-char-name">Soda: </h2><a href="https://twitter.com/herbkuffer" target=”_blank”>Clanky</a><br>
+              <h2 class="credits-char-name">Bekzii: </h2><a href="https://twitter.com/fuzzedmarz" target=”_blank”>bekzii</a><br>
+              <h2 class="credits-char-name">Ash: </h2><a href="https://twitter.com/fuzzedmarz" target=”_blank”>bekzii</a><br>
+              <h2 class="credits-char-name">July: </h2><a href="https://twitter.com/juneibyou" target=”_blank”>juneibyou</a><br>
+              <h2 class="credits-char-name">Boomhauer: </h2><p>parts split by </p><a href="https://twitter.com/herbkuffer" target=”_blank”>Clanky</a><br>
+              <h2 class="credits-char-name">Hazel: </h2><a href="https://twitter.com/geometricentric" target=”_blank”>geo</a><br>
+              <h2 class="credits-char-name">Moth: </h2><a href="https://twitter.com/mothbeanie" target=”_blank”>mothbeanie</a><br>
+              <h2 class="credits-char-name">Cate: </h2><a href="https://twitter.com/Sn1pdoodle" target=”_blank”>Snip</a><br>
+              <h2 class="credits-char-name">Sherm: </h2><a href="https://twitter.com/shermtwt" target=”_blank”>sherm</a><br>
+              <h2 class="credits-char-name">Sean: </h2><p>chombachoo</p><br>
+              <h2 class="credits-char-name">Violet: </h2><a href="https://twitter.com/spootnik_1" target=”_blank”>spootnik_1</a><br>
+              <h2 class="credits-char-name">Boots: </h2><a href="https://twitter.com/darekit" target=”_blank”>darekit</a><br>
+              <h2 class="credits-char-name">Ollie: </h2><a href="https://twitter.com/ClovUnlucky" target=”_blank”>Clover the Unlucky</a><br>
+              <h2 class="credits-char-name">Kiwi: </h2><a href="https://twitter.com/Bassya17" target=”_blank”>Bassya17</a><br>
+              <h2 class="credits-char-name">Ware: </h2><a href="https://twitter.com/carewareware" target=”_blank”>careware</a><br>
+              <h2 class="credits-char-name">Roxy: </h2><a href="https://twitter.com/carewareware" target=”_blank”>careware</a><br>
+              <h2 class="credits-char-name">Justo: </h2><a href="https://twitter.com/justoinferno" target=”_blank”>justo</a><br>
+              <h2 class="credits-char-name">Brick: </h2><a href="https://twitter.com/justoinferno" target=”_blank”>justo</a><br>
+              <h2 class="credits-char-name">RAC-BOT: </h2><a href="https://laventory.tumblr.com" target=”_blank”>Laventory</a><br>
+              <!-- <h2 class="credits-char-name">Marcy: </h2><a href="https://twitter.com/89Linman" target=”_blank”>Edjoto</a><br> -->
+            </div>
+            <div class="credits-list credits-bgs">
+              <h1>BACKGROUNDS:</h1>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/fuzzedmarz" target=”_blank”>bekzii</a><img src="assets/bgs/thumbs/bg0.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/geometricentric">geo</a> <img src="assets/bgs/thumbs/bg1.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/juneibyou">juneibyou</a><img src="assets/bgs/thumbs/bg2.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/Austr0l">austrol</a><img src="assets/bgs/thumbs/bg3.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/ruduraro">ruduraro</a><img src="assets/bgs/thumbs/bg4.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/herbkuffer">Clanky</a><img src="assets/bgs/thumbs/bg5.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/png103">png103</a><img src="assets/bgs/thumbs/bg6.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/mothbeanie">mothbeanie</a><img src="assets/bgs/thumbs/bg7.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://laventory.tumblr.com">Laventory</a><img src="assets/bgs/thumbs/bg8.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/accentaigu_tw">lee</a><img src="assets/bgs/thumbs/bg9.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/shermtwt">sherm</a><img src="assets/bgs/thumbs/bg10.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/fuzzedmarz">bekzii</a><img src="assets/bgs/thumbs/bg11.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/shermtwt">sherm</a><img src="assets/bgs/thumbs/bg12.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/spootnik_1">spootnik_1</a><img src="assets/bgs/thumbs/bg13.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/darekit">darekit</a><img src="assets/bgs/thumbs/bg14.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/BunnyShotgun">Ren</a><img src="assets/bgs/thumbs/bg15.jpg"><br></div>
+              <div class="credits-bg-entry"><a target=”_blank” href="https://twitter.com/ClovUnlucky">Clover the Unlucky</a><img src="assets/bgs/thumbs/bg16.jpg"><br></div>
+            </div>  
+        </div>
+        <div class="credits-section">
+          <div class="credits-list credits-music">
+            <h1>MUSIC:</h1>
+            <div class="credits-music-entry"><a class="credits-music-title" target=”_blank” href="https://youtu.be/h1g1KG7CFb4">RPG Maker 2003 - Mecha Base</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Hiromi Murakami, Daisuke SHIIBA</p>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Enhanced by </p><a target=”_blank” class="credits-music-composer-name" href="https://www.youtube.com/@aquamidi6775">Aqua MIDI</a>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/Rlz8y6wSuGg">Weatherscan Music - Track 3</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composer unknown</p>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Rip by </p><a target=”_blank” class="credits-music-composer-name" href="https://www.youtube.com/@twcjim">TWCJim</a>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/DuKWc1AQfiY">International Superstar Soccer Deluxe OST - Main Menu</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Hideyuki Eto, Harumi Ueko, Tomoya Tomita</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/-iQLNR9btr4">The Refreshments - Yahoos and Triangles (King of the Hill)</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Roger Clyne</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/d-dd4fMUhAY">Cardiacs - Dirty Boy (portion)</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Written by </p><p class="credits-music-composer-name">Tim Smith, Bob Leith</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://soundcloud.com/dj-impotent/vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv">DJ Impotent - VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV...</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Mashup of </p><p class="credits-music-composer-name">Skrillex - Scary Monsters and Nice Sprites</p>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">and </p><p class="credits-music-composer-name">a MIDI of the same song by "sventoosh" on MIDIZone</p>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Original song composed by </p><p class="credits-music-composer-name">Sonny Moore</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <p class="credits-music-title">Music that plays when you select Sean's head</p>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">chombachoo</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/l8t7KsC9aaQ">Sonic Underground - Mummy Wrap (portion)</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Written by </p><p class="credits-music-composer-name">Jean-Michel Guirao, Mike Piccirillo</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/xW17jtkjvvg">The Prodigy - Smack My Bitch Up (portion)</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Produced by </p><p class="credits-music-composer-name">Liam Howlett</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://soundcloud.com/sigduke/sunset-devils-rest-your-revolver">Sunset Devils OST - Burnham</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><a target=”_blank” class="credits-music-composer-name" href="https://sigmuuusic.carrd.co">sigmuuu</a>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://konjak.bandcamp.com/track/preacher-chromes-theme">Iconoclasts OST - Preacher (Chrome's Theme)</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Joakim Sandberg</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://soundcloud.com/sigduke/sunset-devils-rest-your-revolver">Super Locomotive OST - Main BGM</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Rearrangement of </p><a target=”_blank” class="credits-music-composer-name" href="https://youtu.be/Nv5jMLJQ9f4">Yellow Magic Orchestra - Rydeen</a>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Original song composed by </p><p class="credits-music-composer-name">Yukihiro Takahashi</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://soundcloud.com/sigduke/sunset-devils-rest-your-revolver">Bomberman '94 OST - Password Entry</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Jun Chikuma</p>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <p class="credits-music-title">Music that plays when you select Ware's head</p>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><a target=”_blank” class="credits-music-composer-name" href="https://twitter.com/carewareware">careware</a>
+              </div>
+            </div>
+            <div class="credits-music-entry">
+              <a class="credits-music-title" target=”_blank” href="https://youtu.be/7dwiqNuoxoU?t=2520">Day of the Tentacle OST - Green T and the Sushi Platter - Rap on the Forehead</a>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Composed by </p><p class="credits-music-composer-name">Clint Bajakian, Peter McConnell, Michael Z Land</a>
+              </div>
+              <div class="credits-music-composer-entry">
+                <p class="credits-music-composer">Remastered by </p><a target=”_blank” class="credits-music-composer-name" href="https://www.youtube.com/@JoeMudd">Joe Mudd</a>
+              </div>
+            </div>
+          </div>
+      </div>
+      </details>
+      </div>
+
+      <div class="report-issues">
+        <a href="https://github.com/zeesworth/brenfusion" source="_blank">Visit the GitHub page</a>
+      </div>
+  </div>
+
+  <script src="app.js"></script>
+  </body>
+</html>
