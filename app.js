@@ -2089,6 +2089,7 @@ function preload() {
             {id:"bgm_iron",           src:"sound/bgm_iron.ogg"},
             {id:"bgm_soda",           src:"sound/bgm_soda.ogg"},
             {id:"bgm_roxy",           src:"sound/bgm_roxy.ogg"},
+            {id:"bgm_boots",          src:"sound/bgm_boots.ogg"},
             {id:"pick",               src:"sound/pick.ogg"},
             {id:"herman",             src:"sound/herman.ogg"},
             {id:"dirty",              src:"sound/dirty.ogg"},
@@ -2248,6 +2249,7 @@ var soundMusicWare = null;
 var soundMusicIron = null;
 var soundMusicSoda = null;
 var soundMusicRoxy = null;
+var soundMusicBoots = null;
 
 const BgmType = Object.freeze({
     Main    : 0,
@@ -2264,6 +2266,8 @@ const BgmType = Object.freeze({
     Ware    : 11,
     Iron    : 12,
     Soda    : 13,
+    Roxy    : 14,
+    Boots   : 15,
 });
 //#region bgm updating
 function setActiveBgm(type) {
@@ -2284,6 +2288,7 @@ function setActiveBgm(type) {
     soundMusicIron.volume      = (type == BgmType.Iron)    ? full : 0;
     soundMusicSoda.volume      = (type == BgmType.Soda)    ? full : 0;
     soundMusicRoxy.volume      = (type == BgmType.Roxy)    ? full : 0;
+    soundMusicBoots.volume     = (type == BgmType.Boots)   ? full : 0;
 }
 
 var musicMothActive = false;
@@ -2328,6 +2333,8 @@ function updateBgm() {
         setActiveBgm(BgmType.Sherm);
     } else if (pickedHead == Character.Sean) {
         setActiveBgm(BgmType.Sean);
+    } else if (pickedHead == Character.Boots) {
+        setActiveBgm(BgmType.Boots);
     } else if (pickedHair == Character.Soda) {
         setActiveBgm(BgmType.Soda);
     } else if (selectedBg == 11) {
@@ -2371,6 +2378,8 @@ function playBgm() {
     soundMusicSoda.volume = 0;
     soundMusicRoxy = createjs.Sound.play("bgm_roxy", {loop: -1});
     soundMusicRoxy.volume = 0;
+    soundMusicBoots = createjs.Sound.play("bgm_boots", {loop: -1});
+    soundMusicBoots.volume = 0;
 }
 //#endregion
 
