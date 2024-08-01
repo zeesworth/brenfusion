@@ -2839,31 +2839,28 @@ function queueSaveCharacterImage(e) {
 }
 
 function checkCanShare() {
-    if (navigator.share === undefined) {
-        return false;
+    if (!navigator.canShare) {
+        console.log("can't share data - navigator.canShare undefined");
+        return;
     }
 }
 // https://stackoverflow.com/a/67074974
 async function shareData (data) {
-    if (navigator.share === undefined) {
-        console.log("can't share data - navigator.share undefined");
-        return;
-    }
     const blob = await (await fetch(data)).blob();
     const shareData = {
         files: [
-            new File([blob], getCharacterImageName(true), {
-                type: blob.type,
-            }),
+            new File(
+                [blob],
+                'animation.png',
+                {
+                    type: blob.type,
+                    lastModified: new Date().getTime()
+                }
+            )
         ],
     };
     try {
-        if (!(navigator.canShare(shareData))) {
-            console.error("can't share data - canShare failed");
-            return;
-        };
-        await navigator.share(shareData);
-        return true;
+        navigator.share(shareData);
     } catch (err) {
         console.error(err);
     }
@@ -2873,6 +2870,7 @@ function saveCharacterImageDownload() {
 }
 function saveCharacterImageWebShare() {
     if (!checkCanShare()) {
+        console.log("web share api unavailable - falling back to downloading image");
         saveCharacterImageDownload();
         return;
     }
