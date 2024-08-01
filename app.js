@@ -1447,6 +1447,7 @@ function setHeadPick(pick, updateSelect = true) {
     pickedHead = pick;
     if (updateSelect) document.getElementById("headPick" ).value = pick;
     changedAnything = true;
+    changeBgm();
 }
 function setHairPick(pick, updateSelect = true) {
     if (pick == Character.Herman && pickedHair != Character.Herman) {
@@ -1458,21 +1459,25 @@ function setHairPick(pick, updateSelect = true) {
     pickedHair = pick;
     if (updateSelect) document.getElementById("hairPick" ).value = pick;
     changedAnything = true;
+    changeBgm();
 }
 function setTorsoPick(pick, updateSelect = true) {
     pickedTorso = pick;
     if (updateSelect) document.getElementById("torsoPick").value = pick;
     changedAnything = true;
+    changeBgm();
 }
 function setArmsPick(pick, updateSelect = true) {
     pickedArms = pick;
     if (updateSelect) document.getElementById("armsPick" ).value = pick;
     changedAnything = true;
+    changeBgm();
 }
 function setLegsPick(pick, updateSelect = true) {
     pickedLegs = pick;
     if (updateSelect) document.getElementById("legsPick" ).value = pick;
     changedAnything = true;
+    changeBgm();
 }
 
 function changeHeadPick(e) {
@@ -1772,12 +1777,6 @@ function selectBg(i) {
         changedAnything = true;
     }
 
-    if (i == 11 && selectedBg != i) {
-        if (soundMusicHotep != null) {
-            soundMusicHotep.position = 0;
-        }
-    }
-
 	if (selectedBg != -1) {
 		document.getElementById("bgbutton-" + selectedBg.toString()).setAttribute("class", "");
 	}
@@ -1900,7 +1899,9 @@ function init() {
     isMobile = checkMobile();
     useWebGL = webgl_detect();
     useAudio = createjs.Sound.initializeDefaultPlugins();
-    document.body.addEventListener("click", handleSoundClick, false);
+    if (useAudio) {
+        document.body.addEventListener("click", handleSoundClick, false);
+    }
 }
 
 var changedAnything = false;
@@ -2108,6 +2109,7 @@ function preload() {
 var bgmPlayQueued = false;
 function handleSoundClick(event) {
     bgmPlayQueued = true;
+    document.body.removeEventListener("click", handleSoundClick, false);
 }
 
 function Bounds(xMin, yMin, xMax, yMax) {
@@ -2236,23 +2238,9 @@ function setup() {
 }
 
 var soundMusic = null;
-var soundMusicKOTH = null;
 var soundMusicKOTHHell = null;
-var soundMusicMoth = null;
-var soundMusicHazel = null;
-var soundMusicSherm = null;
-var soundMusicSean = null;
-var soundMusicHotep = null;
-var soundMusicDance = null;
-var soundMusicOllie = null;
-var soundMusicJune = null;
-var soundMusicHeather = null;
-var soundMusicWare = null;
-var soundMusicIron = null;
-var soundMusicSoda = null;
-var soundMusicRoxy = null;
-var soundMusicBoots = null;
 
+//#region bgm updating
 const BgmType = Object.freeze({
     Main    : 0,
     KOTH    : 1,
@@ -2271,39 +2259,58 @@ const BgmType = Object.freeze({
     Roxy    : 14,
     Boots   : 15,
 });
-//#region bgm updating
+var activeBgm = BgmType.Main;
+
 function setActiveBgm(type) {
-    let full = 1 - boomhauerHellProgress;
-    soundMusic.volume          = (type == BgmType.Main)    ? full : 0;
-    soundMusicKOTH.volume      = (type == BgmType.KOTH)    ? full : 0 ;
-    soundMusicKOTHHell.volume  = boomhauerHellProgress;   
-    soundMusicMoth.volume      = (type == BgmType.Moth)    ? full : 0;
-    soundMusicHazel.volume     = (type == BgmType.Hazel)   ? full : 0;
-    soundMusicSherm.volume     = (type == BgmType.Sherm)   ? full : 0;
-    soundMusicSean.volume      = (type == BgmType.Sean)    ? full : 0;
-    soundMusicHotep.volume     = (type == BgmType.Hotep)   ? full : 0;
-    soundMusicDance.volume     = (type == BgmType.Dance)   ? full : 0;
-    soundMusicOllie.volume     = (type == BgmType.Ollie)   ? full : 0;
-    soundMusicJune.volume      = (type == BgmType.June)    ? full : 0;
-    soundMusicHeather.volume   = (type == BgmType.Heather) ? full : 0;
-    soundMusicWare.volume      = (type == BgmType.Ware)    ? full : 0;
-    soundMusicIron.volume      = (type == BgmType.Iron)    ? full : 0;
-    soundMusicSoda.volume      = (type == BgmType.Soda)    ? full : 0;
-    soundMusicRoxy.volume      = (type == BgmType.Roxy)    ? full : 0;
-    soundMusicBoots.volume     = (type == BgmType.Boots)   ? full : 0;
+    let id;
+    switch (type) {
+        default:
+        case BgmType.Main   : id = "bgm"; break;
+        case BgmType.KOTH   : id = "bgm_boomhauer"; break;
+        case BgmType.Moth   : id = "bgm_moth"; break;
+        case BgmType.Hazel  : id = "bgm_hazel"; break;
+        case BgmType.Sherm  : id = "bgm_sherm"; break;
+        case BgmType.Sean   : id = "bgm_sean"; break;
+        case BgmType.Hotep  : id = "bgm_hotep"; break;
+        case BgmType.Dance  : id = "bgm_dance"; break;
+        case BgmType.Ollie  : id = "bgm_ollie"; break;
+        case BgmType.June   : id = "bgm_june"; break;
+        case BgmType.Heather: id = "bgm_heather"; break;
+        case BgmType.Ware   : id = "bgm_ware"; break;
+        case BgmType.Iron   : id = "bgm_iron"; break;
+        case BgmType.Soda   : id = "bgm_soda"; break;
+        case BgmType.Roxy   : id = "bgm_roxy"; break;
+        case BgmType.Boots  : id = "bgm_boots"; break;
+    }
+
+    if (soundMusic == undefined) {
+        soundMusic = createjs.Sound.play(id, {loop: loop ? -1 : 0});
+    } else if (type != activeBgm) {
+        let oldMusic = soundMusic;
+
+        soundMusic = createjs.Sound.play(id, {loop: loop ? -1 : 0});
+        if (type != BgmType.Hotep) {
+            soundMusic.position = oldMusic.position % soundMusic.duration; // match new music position with old music
+        }
+        oldMusic.stop();
+    }
+
+    if (type == BgmType.KOTH) {
+        soundMusicKOTHHell?.stop();
+        soundMusicKOTHHell = createjs.Sound.play("bgm_boomhauer_hell", {loop: loop ? -1 : 0});
+        soundMusicKOTHHell.position = soundMusic.position;
+        soundMusicKOTHHell.volume  = boomhauerHellProgress;
+    } else {
+        soundMusicKOTHHell?.stop();
+    }
+
+    soundMusic.volume = 1 - boomhauerHellProgress;
+    activeBgm = type;
 }
 
 var musicMothActive = false;
-function updateBgm() {
+function changeBgm() {
     if (!useAudio) return;
-
-    createjs.Sound.volume = (volumeSetting / 3);
-    if (soundBgChange != null) {
-        soundBgChange.volume = 0.6 * (1 - boomhauerHellProgress);
-    }
-    if (soundMusic === null) {
-        return;
-    }
 
     let boomhauser = 
         pickedHead == Character.Boomhauer ||
@@ -2345,46 +2352,23 @@ function updateBgm() {
         setActiveBgm(BgmType.Main);
     }
 }
-function playBgm() {
-	if (soundMusic && soundMusic.sourceNode != null) {
-		return;
-	}
-	soundMusic = createjs.Sound.play("bgm", {loop: -1});
-    soundMusicKOTH = createjs.Sound.play("bgm_boomhauer", {loop: -1});
-    soundMusicKOTH.volume = 0;
-    soundMusicKOTHHell = createjs.Sound.play("bgm_boomhauer_hell", {loop: -1});
-    soundMusicKOTHHell.volume = 0;
-    soundMusicMoth = createjs.Sound.play("bgm_moth", {loop: -1});
-    soundMusicMoth.volume = 0;
-    soundMusicHazel = createjs.Sound.play("bgm_hazel", {loop: -1});
-    soundMusicHazel.volume = 0;
-    soundMusicSherm = createjs.Sound.play("bgm_sherm", {loop: -1});
-    soundMusicSherm.volume = 0;
-    soundMusicSean = createjs.Sound.play("bgm_sean", {loop: -1});
-    soundMusicSean.volume = 0;
-    soundMusicHotep = createjs.Sound.play("bgm_hotep", {loop: -1});
-    soundMusicHotep.volume = 0;
-    soundMusicDance = createjs.Sound.play("bgm_dance", {loop: -1});
-    soundMusicDance.volume = 0;
-    soundMusicOllie = createjs.Sound.play("bgm_ollie", {loop: -1});
-    soundMusicOllie.volume = 0;
-    soundMusicJune = createjs.Sound.play("bgm_june", {loop: -1});
-    soundMusicJune.volume = 0;
-    soundMusicHeather = createjs.Sound.play("bgm_heather", {loop: -1});
-    soundMusicHeather.volume = 0;
-    soundMusicWare = createjs.Sound.play("bgm_ware", {loop: -1});
-    soundMusicWare.volume = 0;
-    soundMusicIron = createjs.Sound.play("bgm_iron", {loop: -1});
-    soundMusicIron.volume = 0;
-    soundMusicSoda = createjs.Sound.play("bgm_soda", {loop: -1});
-    soundMusicSoda.volume = 0;
-    soundMusicRoxy = createjs.Sound.play("bgm_roxy", {loop: -1});
-    soundMusicRoxy.volume = 0;
-    soundMusicBoots = createjs.Sound.play("bgm_boots", {loop: -1});
-    soundMusicBoots.volume = 0;
-}
 //#endregion
+function updateBgm() {
+    if (!useAudio) return;
+    createjs.Sound.volume = (volumeSetting / 3);
+    if (soundBgChange != null) {
+        soundBgChange.volume = 0.6 * (1 - boomhauerHellProgress);
+    }
 
+    if (soundMusic === null) {
+        return;
+    }
+
+    soundMusic.volume          = 1 - boomhauerHellProgress;
+    if (soundMusicKOTHHell != null) {
+        soundMusicKOTHHell.volume  = boomhauerHellProgress;
+    }
+}
 
 // https://www.geeksforgeeks.org/implementation-stack-javascript/
 class Stack {
@@ -2910,7 +2894,6 @@ function saveCharacterImage() {
         saveCharacterImageWebShare();
     }
 
-    soundCamera?.stop();
     soundCamera = playSound("camera", soundCamera);
 }
 
@@ -2924,8 +2907,8 @@ function easeInCubic(x) {
 };
 
 function draw() {
-    if (bgmPlayQueued) {
-        playBgm();
+    if (bgmPlayQueued) {    
+        changeBgm();
         bgmPlayQueued = false;
     }
 
