@@ -1536,10 +1536,7 @@ const dancingTextStop = [
 var dancing = false;
 function toggleDance() {
     dancing = !dancing;
-
-    if (soundMusicDance != null) {
-        soundMusicDance.position = 0;
-    }
+    changeBgm();
 
     if (dancing === true) {
         currDanceTextStop = getRandomIntReroll(0, dancingTextStop.length-1, currDanceTextStop);
@@ -2289,7 +2286,7 @@ function setActiveBgm(type) {
         let oldMusic = soundMusic;
 
         soundMusic = createjs.Sound.play(id, {loop: loop ? -1 : 0});
-        if (type != BgmType.Hotep) {
+        if (type != BgmType.Hotep && type != BgmType.Dance) {
             soundMusic.position = oldMusic.position % soundMusic.duration; // match new music position with old music
         }
         oldMusic.stop();
