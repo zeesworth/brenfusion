@@ -2841,8 +2841,9 @@ function queueSaveCharacterImage(e) {
 function checkCanShare() {
     if (!navigator.canShare) {
         console.log("can't share data - navigator.canShare undefined");
-        return;
+        return false;
     }
+    return true;
 }
 // https://stackoverflow.com/a/67074974
 async function shareData (data) {
