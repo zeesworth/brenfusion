@@ -1899,7 +1899,7 @@ var useAudio;
 function init() {
     isMobile = checkMobile();
     useWebGL = webgl_detect();
-    useAudio = createjs.Sound.initializeDefaultPlugins();
+    useAudio = false;//createjs.Sound.initializeDefaultPlugins();
     document.body.addEventListener("click", handleSoundClick, false);
 }
 
