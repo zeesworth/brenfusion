@@ -2166,21 +2166,23 @@ function setup() {
         bodyPartImagesBounds[bodyPart] = new Array(Character.__COUNT);
     }
 
-    volumeButton = new Clickable();
-    volumeButton.locate(8, 8);
-    volumeButton.image = volumeImages[volumeSetting];
-    volumeButton.fitImage = true;
-    volumeButton.resize(32, 32);
+    if (useAudio) {
+        volumeButton = new Clickable();
+        volumeButton.locate(8, 8);
+        volumeButton.image = volumeImages[volumeSetting];
+        volumeButton.fitImage = true;
+        volumeButton.resize(32, 32);
 
-    volumeButton.onPress = function() {
-        volumeSetting = (volumeSetting + 1) % 4;
-        this.image = volumeImages[volumeSetting];
-    }
-    volumeButton.onHover = function() {
-        cursor(HAND);
-    }
-    volumeButton.onOutside = function() {
-        cursor(ARROW);
+        volumeButton.onPress = function() {
+            volumeSetting = (volumeSetting + 1) % 4;
+            this.image = volumeImages[volumeSetting];
+        }
+        volumeButton.onHover = function() {
+            cursor(HAND);
+        }
+        volumeButton.onOutside = function() {
+            cursor(ARROW);
+        }
     }
 
     if (useWebGL) {
@@ -2960,5 +2962,7 @@ function draw() {
     drawAllPartBounds();
     drawAllAttachPoints();
 
-    volumeButton.draw();
+    if (useAudio) {
+        volumeButton.draw();
+    }
 }
