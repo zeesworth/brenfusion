@@ -2092,6 +2092,7 @@ function preload() {
             {id:"bgm_soda",           src:"sound/bgm_soda.ogg"},
             {id:"bgm_roxy",           src:"sound/bgm_roxy.ogg"},
             {id:"bgm_boots",          src:"sound/bgm_boots.ogg"},
+            {id:"bgm_rac",          src:"sound/bgm_rac.ogg"},
             {id:"pick",               src:"sound/pick.ogg"},
             {id:"herman",             src:"sound/herman.ogg"},
             {id:"dirty",              src:"sound/dirty.ogg"},
@@ -2259,6 +2260,7 @@ const BgmType = Object.freeze({
     Soda    : 13,
     Roxy    : 14,
     Boots   : 15,
+    Rac     : 16,
 });
 var activeBgm = BgmType.Main;
 
@@ -2266,22 +2268,23 @@ function setActiveBgm(type) {
     let id;
     switch (type) {
         default:
-        case BgmType.Main   : id = "bgm"; break;
-        case BgmType.KOTH   : id = "bgm_boomhauer"; break;
-        case BgmType.Moth   : id = "bgm_moth"; break;
-        case BgmType.Hazel  : id = "bgm_hazel"; break;
-        case BgmType.Sherm  : id = "bgm_sherm"; break;
-        case BgmType.Sean   : id = "bgm_sean"; break;
-        case BgmType.Hotep  : id = "bgm_hotep"; break;
-        case BgmType.Dance  : id = "bgm_dance"; break;
-        case BgmType.Ollie  : id = "bgm_ollie"; break;
-        case BgmType.June   : id = "bgm_june"; break;
-        case BgmType.Heather: id = "bgm_heather"; break;
-        case BgmType.Ware   : id = "bgm_ware"; break;
-        case BgmType.Iron   : id = "bgm_iron"; break;
-        case BgmType.Soda   : id = "bgm_soda"; break;
-        case BgmType.Roxy   : id = "bgm_roxy"; break;
-        case BgmType.Boots  : id = "bgm_boots"; break;
+        case BgmType.Main    : id = "bgm";           break;
+        case BgmType.KOTH    : id = "bgm_boomhauer"; break;
+        case BgmType.Moth    : id = "bgm_moth";      break;
+        case BgmType.Hazel   : id = "bgm_hazel";     break;
+        case BgmType.Sherm   : id = "bgm_sherm";     break;
+        case BgmType.Sean    : id = "bgm_sean";      break;
+        case BgmType.Hotep   : id = "bgm_hotep";     break;
+        case BgmType.Dance   : id = "bgm_dance";     break;
+        case BgmType.Ollie   : id = "bgm_ollie";     break;
+        case BgmType.June    : id = "bgm_june";      break;
+        case BgmType.Heather : id = "bgm_heather";   break;
+        case BgmType.Ware    : id = "bgm_ware";      break;
+        case BgmType.Iron    : id = "bgm_iron";      break;
+        case BgmType.Soda    : id = "bgm_soda";      break;
+        case BgmType.Roxy    : id = "bgm_roxy";      break;
+        case BgmType.Boots   : id = "bgm_boots";     break;
+        case BgmType.Rac     : id = "bgm_rac";       break;
     }
 
     if (soundMusic == undefined) {
@@ -2345,6 +2348,8 @@ function changeBgm() {
         setActiveBgm(BgmType.Sean);
     } else if (pickedHead == Character.Boots) {
         setActiveBgm(BgmType.Boots);
+    } else if (pickedHead == Character.Rac) {
+        setActiveBgm(BgmType.Rac);
     } else if (pickedHair == Character.Soda) {
         setActiveBgm(BgmType.Soda);
     } else if (selectedBg == 11) {
