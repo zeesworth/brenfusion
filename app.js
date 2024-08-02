@@ -623,14 +623,14 @@ const bodyPartAttachPoints = [
     ],
     // violet
     [
-        /* leg front */ new BodyAttachPointInfo(147, 345, 1.42),
-        /* leg back  */ new BodyAttachPointInfo(274, 343, 1.42),
-        /* arm front */ new BodyAttachPointInfo(164, 176),
-        /* arm back  */ new BodyAttachPointInfo(261, 177),
-        /* head      */ new BodyAttachPointInfo(212, 129, 0.75),
-        /* torso     */ new BodyAttachPointInfo(214, 349),
-        /* hair      */ new BodyAttachPointInfo(210,  63, 0.65),
-        /* eyes      */ new BodyAttachPointInfo(217, 113, 0.75),
+        /* leg front */ new BodyAttachPointInfo(168, 393, 1.42),
+        /* leg back  */ new BodyAttachPointInfo(313, 392, 1.42),
+        /* arm front */ new BodyAttachPointInfo(187, 200),
+        /* arm back  */ new BodyAttachPointInfo(297, 202),
+        /* head      */ new BodyAttachPointInfo(241, 147, 0.75),
+        /* torso     */ new BodyAttachPointInfo(244, 398),
+        /* hair      */ new BodyAttachPointInfo(239,  72, 0.65),
+        /* eyes      */ new BodyAttachPointInfo(247, 129, 0.75),
     ],
     // boots
     [
@@ -770,7 +770,7 @@ const characterScaleFactors = [
     0.89,  // snip
     1.36,  // sherm
     1.24,  // sean
-    0.76,  // violet
+    0.87,  // violet
     1.12,  // boots
     0.94,  // ollie
     0.82,  // kiwi
