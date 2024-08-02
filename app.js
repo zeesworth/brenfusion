@@ -524,14 +524,14 @@ const bodyPartAttachPoints = [
     ],
     // june
     [
-        /* leg front */ new BodyAttachPointInfo(254, 647),
-        /* leg back  */ new BodyAttachPointInfo(395, 644),
-        /* arm front */ new BodyAttachPointInfo(275, 378),
-        /* arm back  */ new BodyAttachPointInfo(365, 375),
-        /* head      */ new BodyAttachPointInfo(322, 345),
-        /* torso     */ new BodyAttachPointInfo(312, 496),
-        /* hair      */ new BodyAttachPointInfo(322, 126),
-        /* eyes      */ new BodyAttachPointInfo(358, 308),
+        /* leg front */ new BodyAttachPointInfo(177, 452),
+        /* leg back  */ new BodyAttachPointInfo(276, 450),
+        /* arm front */ new BodyAttachPointInfo(192, 264),
+        /* arm back  */ new BodyAttachPointInfo(255, 262),
+        /* head      */ new BodyAttachPointInfo(225, 241),
+        /* torso     */ new BodyAttachPointInfo(218, 347),
+        /* hair      */ new BodyAttachPointInfo(225,  88),
+        /* eyes      */ new BodyAttachPointInfo(250, 215),
     ],
     // boomhauer
     [
@@ -568,113 +568,113 @@ const bodyPartAttachPoints = [
     ],
     // heather
     [
-        /* leg front */ new BodyAttachPointInfo(226, 380),
-        /* leg back  */ new BodyAttachPointInfo(350, 387),
-        /* arm front */ new BodyAttachPointInfo(247, 264, 0.9),
-        /* arm back  */ new BodyAttachPointInfo(306, 269, 0.9),
-        /* head      */ new BodyAttachPointInfo(281, 235, 0.7),
-        /* torso     */ new BodyAttachPointInfo(279, 383),
-        /* hair      */ new BodyAttachPointInfo(273,  95, 0.6),
-        /* eyes      */ new BodyAttachPointInfo(296, 176, 0.7),
+        /* leg front */ new BodyAttachPointInfo(214, 361),
+        /* leg back  */ new BodyAttachPointInfo(332, 367),
+        /* arm front */ new BodyAttachPointInfo(234, 250, 0.9),
+        /* arm back  */ new BodyAttachPointInfo(290, 255, 0.9),
+        /* head      */ new BodyAttachPointInfo(266, 223, 0.7),
+        /* torso     */ new BodyAttachPointInfo(265, 363),
+        /* hair      */ new BodyAttachPointInfo(259,  90, 0.6),
+        /* eyes      */ new BodyAttachPointInfo(281, 167, 0.7),
     ],
     // leeby
     [
-        /* leg front */ new BodyAttachPointInfo(539, 814, 1.33),
-        /* leg back  */ new BodyAttachPointInfo(802, 815, 1.33),
-        /* arm front */ new BodyAttachPointInfo(584, 493),
-        /* arm back  */ new BodyAttachPointInfo(741, 498),
-        /* head      */ new BodyAttachPointInfo(669, 414),
-        /* torso     */ new BodyAttachPointInfo(700, 780),
-        /* hair      */ new BodyAttachPointInfo(674, 227, 0.85),
-        /* eyes      */ new BodyAttachPointInfo(686, 381),
+        /* leg front */ new BodyAttachPointInfo(242, 366, 1.33),
+        /* leg back  */ new BodyAttachPointInfo(360, 366, 1.33),
+        /* arm front */ new BodyAttachPointInfo(262, 221),
+        /* arm back  */ new BodyAttachPointInfo(333, 224),
+        /* head      */ new BodyAttachPointInfo(301, 186),
+        /* torso     */ new BodyAttachPointInfo(315, 351),
+        /* hair      */ new BodyAttachPointInfo(303, 102, 0.85),
+        /* eyes      */ new BodyAttachPointInfo(308, 171),
     ],
     // snip
     [
-        /* leg front */ new BodyAttachPointInfo(494, 742, 1.33),
-        /* leg back  */ new BodyAttachPointInfo(756, 758, 1.33),
-        /* arm front */ new BodyAttachPointInfo(534, 411, 1.33),
-        /* arm back  */ new BodyAttachPointInfo(667, 412, 1.33),
-        /* head      */ new BodyAttachPointInfo(617, 315, 1.1),
-        /* torso     */ new BodyAttachPointInfo(625, 716),
-        /* hair      */ new BodyAttachPointInfo(610,  47),
-        /* eyes      */ new BodyAttachPointInfo(639, 231),
+        /* leg front */ new BodyAttachPointInfo(237, 356, 1.33),
+        /* leg back  */ new BodyAttachPointInfo(362, 363, 1.33),
+        /* arm front */ new BodyAttachPointInfo(256, 197, 1.33),
+        /* arm back  */ new BodyAttachPointInfo(320, 197, 1.33),
+        /* head      */ new BodyAttachPointInfo(296, 151, 1.1),
+        /* torso     */ new BodyAttachPointInfo(300, 343),
+        /* hair      */ new BodyAttachPointInfo(292,  22),
+        /* eyes      */ new BodyAttachPointInfo(306, 110),
     ],
     // sherm
     [
-        /* leg front */ new BodyAttachPointInfo(250, 527),
-        /* leg back  */ new BodyAttachPointInfo(457, 523),
-        /* arm front */ new BodyAttachPointInfo(294, 330),
-        /* arm back  */ new BodyAttachPointInfo(455, 326),
-        /* head      */ new BodyAttachPointInfo(395, 258, 0.85),
-        /* torso     */ new BodyAttachPointInfo(373, 445),
-        /* hair      */ new BodyAttachPointInfo(387,  57, 0.8),
-        /* eyes      */ new BodyAttachPointInfo(401, 220),
+        /* leg front */ new BodyAttachPointInfo(200, 421),
+        /* leg back  */ new BodyAttachPointInfo(365, 418),
+        /* arm front */ new BodyAttachPointInfo(235, 264),
+        /* arm back  */ new BodyAttachPointInfo(364, 260),
+        /* head      */ new BodyAttachPointInfo(316, 206, 0.85),
+        /* torso     */ new BodyAttachPointInfo(298, 356),
+        /* hair      */ new BodyAttachPointInfo(309,  45, 0.8),
+        /* eyes      */ new BodyAttachPointInfo(320, 176),
     ],
     // sean
     [
-        /* leg front */ new BodyAttachPointInfo(188, 551),
-        /* leg back  */ new BodyAttachPointInfo(307, 547),
-        /* arm front */ new BodyAttachPointInfo(184, 359),
-        /* arm back  */ new BodyAttachPointInfo(278, 359),
-        /* head      */ new BodyAttachPointInfo(254, 324),
-        /* torso     */ new BodyAttachPointInfo(239, 360),
-        /* hair      */ new BodyAttachPointInfo(257, 129, 1.02),
-        /* eyes      */ new BodyAttachPointInfo(259, 279),
+        /* leg front */ new BodyAttachPointInfo(180, 528),
+        /* leg back  */ new BodyAttachPointInfo(294, 525),
+        /* arm front */ new BodyAttachPointInfo(176, 344),
+        /* arm back  */ new BodyAttachPointInfo(266, 344),
+        /* head      */ new BodyAttachPointInfo(243, 311),
+        /* torso     */ new BodyAttachPointInfo(229, 345),
+        /* hair      */ new BodyAttachPointInfo(246, 123, 1.02),
+        /* eyes      */ new BodyAttachPointInfo(248, 267),
     ],
     // violet
     [
-        /* leg front */ new BodyAttachPointInfo(273, 640, 1.42),
-        /* leg back  */ new BodyAttachPointInfo(509, 637, 1.42),
-        /* arm front */ new BodyAttachPointInfo(304, 326),
-        /* arm back  */ new BodyAttachPointInfo(484, 329),
-        /* head      */ new BodyAttachPointInfo(393, 239, 0.75),
-        /* torso     */ new BodyAttachPointInfo(398, 647),
-        /* hair      */ new BodyAttachPointInfo(389, 117, 0.65),
-        /* eyes      */ new BodyAttachPointInfo(402, 210, 0.75),
+        /* leg front */ new BodyAttachPointInfo(147, 345, 1.42),
+        /* leg back  */ new BodyAttachPointInfo(274, 343, 1.42),
+        /* arm front */ new BodyAttachPointInfo(164, 176),
+        /* arm back  */ new BodyAttachPointInfo(261, 177),
+        /* head      */ new BodyAttachPointInfo(212, 129, 0.75),
+        /* torso     */ new BodyAttachPointInfo(214, 349),
+        /* hair      */ new BodyAttachPointInfo(210,  63, 0.65),
+        /* eyes      */ new BodyAttachPointInfo(217, 113, 0.75),
     ],
     // boots
     [
-        /* leg front */ new BodyAttachPointInfo( 623, 1472, 1.2),
-        /* leg back  */ new BodyAttachPointInfo(1189, 1476, 1.2),
-        /* arm front */ new BodyAttachPointInfo( 716,  918),
-        /* arm back  */ new BodyAttachPointInfo(1135,  909),
-        /* head      */ new BodyAttachPointInfo( 942,  710, 0.9),
-        /* torso     */ new BodyAttachPointInfo( 895, 1202),
-        /* hair      */ new BodyAttachPointInfo( 907,  215, 0.9),
-        /* eyes      */ new BodyAttachPointInfo( 943,  609, 1.05),
+        /* leg front */ new BodyAttachPointInfo(174, 412, 1.2),
+        /* leg back  */ new BodyAttachPointInfo(332, 413, 1.2),
+        /* arm front */ new BodyAttachPointInfo(200, 257),
+        /* arm back  */ new BodyAttachPointInfo(317, 254),
+        /* head      */ new BodyAttachPointInfo(263, 198, 0.9),
+        /* torso     */ new BodyAttachPointInfo(250, 336),
+        /* hair      */ new BodyAttachPointInfo(253,  60, 0.9),
+        /* eyes      */ new BodyAttachPointInfo(264, 170, 1.05),
     ],
     // ollie
     [
-        /* leg front */ new BodyAttachPointInfo(208, 454, 0.95),
-        /* leg back  */ new BodyAttachPointInfo(306, 455, 0.95),
-        /* arm front */ new BodyAttachPointInfo(213, 298),
-        /* arm back  */ new BodyAttachPointInfo(301, 297),
-        /* head      */ new BodyAttachPointInfo(280, 262, 0.9),
-        /* torso     */ new BodyAttachPointInfo(258, 417),
-        /* hair      */ new BodyAttachPointInfo(287, 143, 0.8),
-        /* eyes      */ new BodyAttachPointInfo(301, 236),
+        /* leg front */ new BodyAttachPointInfo(172, 376, 0.95),
+        /* leg back  */ new BodyAttachPointInfo(253, 377, 0.95),
+        /* arm front */ new BodyAttachPointInfo(176, 247),
+        /* arm back  */ new BodyAttachPointInfo(249, 246),
+        /* head      */ new BodyAttachPointInfo(232, 217, 0.9),
+        /* torso     */ new BodyAttachPointInfo(214, 346),
+        /* hair      */ new BodyAttachPointInfo(238, 118, 0.8),
+        /* eyes      */ new BodyAttachPointInfo(249, 195),
     ],
     // kiwi
     [
-        /* leg front */ new BodyAttachPointInfo(276, 685, 1.25),
-        /* leg back  */ new BodyAttachPointInfo(510, 685, 1.25),
-        /* arm front */ new BodyAttachPointInfo(312, 360),
-        /* arm back  */ new BodyAttachPointInfo(478, 357),
-        /* head      */ new BodyAttachPointInfo(398, 278),
-        /* torso     */ new BodyAttachPointInfo(393, 575),
-        /* hair      */ new BodyAttachPointInfo(393, 78),
-        /* eyes      */ new BodyAttachPointInfo(405, 237, 1.15),
+        /* leg front */ new BodyAttachPointInfo(160, 397, 1.25),
+        /* leg back  */ new BodyAttachPointInfo(295, 397, 1.25),
+        /* arm front */ new BodyAttachPointInfo(180, 208),
+        /* arm back  */ new BodyAttachPointInfo(277, 207),
+        /* head      */ new BodyAttachPointInfo(230, 161),
+        /* torso     */ new BodyAttachPointInfo(227, 333),
+        /* hair      */ new BodyAttachPointInfo(227,  45),
+        /* eyes      */ new BodyAttachPointInfo(234, 137, 1.15),
     ],
     // ware
     [
-        /* leg front */ new BodyAttachPointInfo(487, 623),
-        /* leg back  */ new BodyAttachPointInfo(682, 623),
-        /* arm front */ new BodyAttachPointInfo(438, 368),
-        /* arm back  */ new BodyAttachPointInfo(584, 367),
-        /* head      */ new BodyAttachPointInfo(504, 343, 1.1),
-        /* torso     */ new BodyAttachPointInfo(521, 496),
-        /* hair      */ new BodyAttachPointInfo(493, 80, 1.2),
-        /* eyes      */ new BodyAttachPointInfo(515, 290, 1.4),
+        /* leg front */ new BodyAttachPointInfo(340, 436),
+        /* leg back  */ new BodyAttachPointInfo(477, 436),
+        /* arm front */ new BodyAttachPointInfo(306, 257),
+        /* arm back  */ new BodyAttachPointInfo(408, 256),
+        /* head      */ new BodyAttachPointInfo(352, 240, 1.1),
+        /* torso     */ new BodyAttachPointInfo(364, 347),
+        /* hair      */ new BodyAttachPointInfo(345,  56, 1.2),
+        /* eyes      */ new BodyAttachPointInfo(360, 203, 1.4),
     ],
     // iron
     [
@@ -700,25 +700,25 @@ const bodyPartAttachPoints = [
     ],
     // roxy
     [
-        /* leg front */ new BodyAttachPointInfo(230, 537),
-        /* leg back  */ new BodyAttachPointInfo(398, 533),
-        /* arm front */ new BodyAttachPointInfo(215, 331),
-        /* arm back  */ new BodyAttachPointInfo(333, 335),
-        /* head      */ new BodyAttachPointInfo(280, 291),
-        /* torso     */ new BodyAttachPointInfo(291, 473),
-        /* hair      */ new BodyAttachPointInfo(275, 127, 0.95),
-        /* eyes      */ new BodyAttachPointInfo(283, 264,1.1),
+        /* leg front */ new BodyAttachPointInfo(170, 397),
+        /* leg back  */ new BodyAttachPointInfo(294, 394),
+        /* arm front */ new BodyAttachPointInfo(159, 244),
+        /* arm back  */ new BodyAttachPointInfo(246, 247),
+        /* head      */ new BodyAttachPointInfo(207, 215),
+        /* torso     */ new BodyAttachPointInfo(215, 350),
+        /* hair      */ new BodyAttachPointInfo(203,  93, 0.95),
+        /* eyes      */ new BodyAttachPointInfo(209, 195, 1.1),
     ],
     // justo
     [
-        /* leg front */ new BodyAttachPointInfo(301, 472, 1.6),
-        /* leg back  */ new BodyAttachPointInfo(489, 471, 1.6),
-        /* arm front */ new BodyAttachPointInfo(349, 339, 1.2),
-        /* arm back  */ new BodyAttachPointInfo(453, 339, 1.2),
-        /* head      */ new BodyAttachPointInfo(414, 300),
-        /* torso     */ new BodyAttachPointInfo(395, 376),
-        /* hair      */ new BodyAttachPointInfo(405, 160),
-        /* eyes      */ new BodyAttachPointInfo(420, 272, 1.1),
+        /* leg front */ new BodyAttachPointInfo(282, 443, 1.6),
+        /* leg back  */ new BodyAttachPointInfo(459, 442, 1.6),
+        /* arm front */ new BodyAttachPointInfo(328, 318, 1.2),
+        /* arm back  */ new BodyAttachPointInfo(425, 318, 1.2),
+        /* head      */ new BodyAttachPointInfo(389, 282),
+        /* torso     */ new BodyAttachPointInfo(371, 353),
+        /* hair      */ new BodyAttachPointInfo(380, 150),
+        /* eyes      */ new BodyAttachPointInfo(394, 255, 1.1),
     ],
     // ash
     [
@@ -733,25 +733,25 @@ const bodyPartAttachPoints = [
     ],
     // rac
     [
-        /* leg front */ new BodyAttachPointInfo(274, 450, 1.3),
-        /* leg back  */ new BodyAttachPointInfo(522, 435, 1.3),
-        /* arm front */ new BodyAttachPointInfo(275, 279),
-        /* arm back  */ new BodyAttachPointInfo(453, 272),
-        /* head      */ new BodyAttachPointInfo(374, 229),
-        /* torso     */ new BodyAttachPointInfo(389, 484),
-        /* hair      */ new BodyAttachPointInfo(364, 49),
-        /* eyes      */ new BodyAttachPointInfo(388, 188, 1.1),
+        /* leg front */ new BodyAttachPointInfo(200, 328, 1.3),
+        /* leg back  */ new BodyAttachPointInfo(381, 317, 1.3),
+        /* arm front */ new BodyAttachPointInfo(200, 203),
+        /* arm back  */ new BodyAttachPointInfo(330, 198),
+        /* head      */ new BodyAttachPointInfo(273, 167),
+        /* torso     */ new BodyAttachPointInfo(283, 353),
+        /* hair      */ new BodyAttachPointInfo(265, 35),
+        /* eyes      */ new BodyAttachPointInfo(283, 137, 1.1),
     ],
     // brick
     [
-        /* leg front */ new BodyAttachPointInfo(452, 444, 1.6),
-        /* leg back  */ new BodyAttachPointInfo(612, 443, 1.6),
-        /* arm front */ new BodyAttachPointInfo(481, 338, 1.2),
-        /* arm back  */ new BodyAttachPointInfo(583, 338, 1.2),
-        /* head      */ new BodyAttachPointInfo(533, 289),
-        /* torso     */ new BodyAttachPointInfo(533, 451),
-        /* hair      */ new BodyAttachPointInfo(516, 122),
-        /* eyes      */ new BodyAttachPointInfo(540, 261, 1.1),
+        /* leg front */ new BodyAttachPointInfo(352, 346, 1.6),
+        /* leg back  */ new BodyAttachPointInfo(477, 345, 1.6),
+        /* arm front */ new BodyAttachPointInfo(375, 263, 1.2),
+        /* arm back  */ new BodyAttachPointInfo(454, 263, 1.2),
+        /* head      */ new BodyAttachPointInfo(415, 225),
+        /* torso     */ new BodyAttachPointInfo(415, 351),
+        /* hair      */ new BodyAttachPointInfo(402,  95),
+        /* eyes      */ new BodyAttachPointInfo(421, 203, 1.1),
     ],
 ];
 // defines how big each character is compared to each other
@@ -761,27 +761,27 @@ const characterScaleFactors = [
     0.91,  // bek
     0.91,  // austrol
     0.76,  // herman
-    1.696, // june
+    1.18,  // june
     0.6,   // boomhauer
     1.2,   // hazel
     0.9,   // moth
-    1.4,   // heather
-    1.68,  // leeby
-    1.86,  // snip
-    1.7,   // sherm
-    1.3,   // sean
-    1.42,  // violet
-    4,     // boots
-    1.14,  // ollie
-    1.42,  // kiwi
-    1.7,   // ware
+    1.33,  // heather
+    0.75,  // leeby
+    0.89,  // snip
+    1.36,  // sherm
+    1.24,  // sean
+    0.76,  // violet
+    1.12,  // boots
+    0.94,  // ollie
+    0.82,  // kiwi
+    1.19,  // ware
     0.93,  // iron
     0.63,  // soda
-    1.37,  // roxy
-    1,     // justo
+    1.01,  // roxy
+    0.94,  // justo
     0.79,  // ash
-    1.4,   // rac
-    1.19,  // brick
+    1.02,  // rac
+    0.92,  // brick
 ]
 
 // defines which body parts a character uses, used for image preloading
