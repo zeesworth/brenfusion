@@ -1687,11 +1687,14 @@ const BackgroundDrawType = Object.freeze({
     TileY : (1 << 2),
     TileXY : (1 << 1) | (1 << 2),
 });
-function BackgroundLayer(offsetX, offsetY, speedX, speedY, drawType, ext, image = null) {
+function BackgroundLayer(offsetX, offsetY, speedX, speedY, scaleX, scaleY, smooth, drawType, ext, image = null) {
     this.offsetX = offsetX;
     this.offsetY = offsetY;
     this.speedX = speedX;
     this.speedY = speedY;
+    this.scaleX = scaleX;
+    this.scaleY = scaleY;
+    this.smooth = smooth;
     this.drawType = drawType;
     this.ext = ext;
     this.image = image;
@@ -1705,64 +1708,65 @@ function BackgroundInfo(layers) {
 //#region background info defs
 var backgroundInfoDefs = [
     new BackgroundInfo([ // user-uploaded background
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Stretch, "whoop"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Stretch, "whoop"),
     ]),
     
     new BackgroundInfo([ // 0
-        new BackgroundLayer(0, 0, -2, 0, BackgroundDrawType.TileX, "jpg"),
+        new BackgroundLayer(0, 0, -2, 0, 1.0, 1.0, true, BackgroundDrawType.TileX, "jpg"),
     ]),
     new BackgroundInfo([ // 1
-        new BackgroundLayer(0, 0,  0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0,  0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 2
-        new BackgroundLayer(0, 0,  0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0,  0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 3
-        new BackgroundLayer(0, 0,  0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0,  0, 0, 1.0, 1.0, false, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 4
-        new BackgroundLayer(0, 0,  0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0,  0, 0, 1.0, 1.0, true, BackgroundDrawType.Stretch, "jpg"),
     ]),
     new BackgroundInfo([ // 5
-        new BackgroundLayer(0, 0,  0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0,  0, 0, 1.0, 1.0, true, BackgroundDrawType.Stretch, "jpg"),
     ]),
     new BackgroundInfo([ // 6
-        new BackgroundLayer(0, 0, -1, 0, BackgroundDrawType.TileX, "gif"),
+        new BackgroundLayer(0, 0,    0, 0, 1.0, 1.0, false, BackgroundDrawType.Stretch, "png"),
+        new BackgroundLayer(0, 189, -1, 0, 1.0, 1.0, false, BackgroundDrawType.TileX,   "gif"),
     ]),
     new BackgroundInfo([ // 7
-        new BackgroundLayer(0, 0,    0,   0, BackgroundDrawType.Once,  "png"),
-        new BackgroundLayer(0, 166, -0.7, 0, BackgroundDrawType.TileX, "png"),
-        new BackgroundLayer(0, 246, -1.5, 0, BackgroundDrawType.TileX, "png"),
-        new BackgroundLayer(0, 292, -3,   0, BackgroundDrawType.TileX, "png"),
-        new BackgroundLayer(0, 354, -6,   0, BackgroundDrawType.TileX, "png"),
-        new BackgroundLayer(0, 0,    0,   0, BackgroundDrawType.Once,  "png"),
+        new BackgroundLayer(0, 0,    0,   0, 2.0, 2.0, false, BackgroundDrawType.Once,  "gif"),
+        new BackgroundLayer(0, 166, -0.7, 0, 2.0, 2.0, false, BackgroundDrawType.TileX, "gif"),
+        new BackgroundLayer(0, 246, -1.5, 0, 2.0, 2.0, false, BackgroundDrawType.TileX, "gif"),
+        new BackgroundLayer(0, 292, -3,   0, 2.0, 2.0, false, BackgroundDrawType.TileX, "gif"),
+        new BackgroundLayer(0, 354, -6,   0, 2.0, 2.0, false, BackgroundDrawType.TileX, "gif"),
+        new BackgroundLayer(0, 0,    0,   0, 2.0, 2.0, false, BackgroundDrawType.Once,  "gif"),
     ]),
     new BackgroundInfo([ // 8
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Stretch, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Stretch, "jpg"),
     ]),
     new BackgroundInfo([ // 9
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "png"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "gif"),
     ]),
     new BackgroundInfo([ // 10
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 11
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.TileXY, "gif"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, false, BackgroundDrawType.TileXY, "gif"),
     ]),
     new BackgroundInfo([ // 12
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 13
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
     new BackgroundInfo([ // 14
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Stretch, "jpg"),
     ]),
     new BackgroundInfo([ // 15
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "png"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "gif"),
     ]),
     new BackgroundInfo([ // 16
-        new BackgroundLayer(0, 0, 0, 0, BackgroundDrawType.Once, "jpg"),
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
 ]
 //#endregion
@@ -2722,9 +2726,18 @@ function drawBackgroundLayer(layer) {
         return;
     }
 
+    if (layer.smooth) {
+        bgCanvas.smooth();
+    } else {
+        bgCanvas.noSmooth();
+    }
+
+    let imgWidth = img.width * layer.scaleX;
+    let imgHeight = img.height * layer.scaleY;
+
     if (layer.drawType == BackgroundDrawType.Once) 
     {
-        bgCanvas.image(img, layer.posX, layer.posY);
+        bgCanvas.image(img, layer.posX, layer.posY, imgWidth, imgHeight);
     } 
     else if (layer.drawType == BackgroundDrawType.Stretch) 
     {
@@ -2732,49 +2745,49 @@ function drawBackgroundLayer(layer) {
     } 
     else if (layer.drawType == BackgroundDrawType.TileX) 
     {
-        let sxf = width / img.width;
+        let sxf = width / imgWidth;
         for (let j = -1; j <= sxf; j++)
         {
-            bgCanvas.image(img, layer.posX + j * img.width, layer.posY);
+            bgCanvas.image(img, layer.posX + j * imgWidth, layer.posY, imgWidth, imgHeight);
         }
 
         layer.posX += layer.speedX;
 
-        layer.posX %= img.width;
-        if (layer.posX < 0) layer.posX += img.width;
+        layer.posX %= imgWidth;
+        if (layer.posX < 0) layer.posX += imgWidth;
     } 
     else if (layer.drawType == BackgroundDrawType.TileY) 
     {
-        let syf = height / img.height;
+        let syf = height / imgHeight;
         for (let i = -1; i <= syf; i++)
         {
-            bgCanvas.image(img, layer.posX, layer.posY + i * img.height);
+            bgCanvas.image(img, layer.posX, layer.posY + i * imgHeight, imgWidth, imgHeight);
         }
 
         layer.posY += layer.speedY;
 
-        layer.posY %= img.height;
-        if (layer.posY < 0) layer.posY += img.height;
+        layer.posY %= imgHeight;
+        if (layer.posY < 0) layer.posY += imgHeight;
     } 
     else if (layer.drawType == BackgroundDrawType.TileXY) 
     {
-        let sxf = width / img.width;
-        let syf = height / img.height;
+        let sxf = width / imgWidth;
+        let syf = height / imgHeight;
         for (let i = -1; i <= syf; i++)
         {
             for (let j = -1; j <= sxf; j++)
             {
-                bgCanvas.image(img, layer.posX + j * img.width, layer.posY + i * img.height);
+                bgCanvas.image(img, layer.posX + j * imgWidth, layer.posY + i * imgHeight, imgWidth, imgHeight);
             }
         }
 
         layer.posX += layer.speedX;
         layer.posY += layer.speedY;
         
-        layer.posX %= img.width;
-        layer.posY %= img.height;
-        if (layer.posX < 0) layer.posX += img.width;
-        if (layer.posY < 0) layer.posY += img.height;
+        layer.posX %= imgWidth;
+        layer.posY %= imgHeight;
+        if (layer.posX < 0) layer.posX += imgWidth;
+        if (layer.posY < 0) layer.posY += imgHeight;
     }
 }
 
