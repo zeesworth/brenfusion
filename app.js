@@ -1785,6 +1785,8 @@ function selectBg(i) {
 	if (i != -1) {
 		document.getElementById("bgbutton-" + i.toString()).setAttribute("class", "selected");
 	}
+
+    changeBgm();
 }
 
 function handleBgImage(e){
@@ -2314,7 +2316,7 @@ function setActiveBgm(type) {
 
 var musicMothActive = false;
 function changeBgm() {
-    if (!useAudio) return;
+    if (!useAudio || !everythingsLoaded) return;
 
     let boomhauser = 
         pickedHead == Character.Boomhauer ||
