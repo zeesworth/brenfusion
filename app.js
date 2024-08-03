@@ -312,6 +312,19 @@ function playSound(id, set, loop = false, volume = 1.0) {
     return sound;
 }
 
+// wrap number to the specified bounds
+function wrap(value, min, max) {
+	if (max <= min) return max;
+	let range = max - min + 1;
+	while(value > max) {
+		value -= range;
+	}
+	while(value < min) {
+		value += range;
+	}
+	return value;
+}
+
 // move towards the target value by a given amount
 function approach(a, b, amount) {
 	if (a < b) {
@@ -2752,50 +2765,27 @@ function drawBackgroundLayer(layer) {
     } 
     else if (layer.drawType == BackgroundDrawType.TileX) 
     {
-        let sxf = width / imgWidth;
-        for (let j = -1; j <= sxf; j++)
-        {
-            bgCanvas.image(img, layer.posX + j * imgWidth, layer.posY, imgWidth, imgHeight);
+        for (let i = wrap(layer.posX, -imgWidth, 0); i < width; i += imgWidth) {
+            bgCanvas.image(img, i, layer.posY, imgWidth, imgHeight);
         }
-
-        layer.posX += layer.speedX;
-
-        layer.posX %= imgWidth;
-        if (layer.posX < 0) layer.posX += imgWidth;
     } 
     else if (layer.drawType == BackgroundDrawType.TileY) 
     {
-        let syf = height / imgHeight;
-        for (let i = -1; i <= syf; i++)
-        {
-            bgCanvas.image(img, layer.posX, layer.posY + i * imgHeight, imgWidth, imgHeight);
+        for (let j = wrap(layer.posY, -imgHeight, 0); j < width; j += imgHeight) {
+            bgCanvas.image(img, layer.posX, j, imgWidth, imgHeight);
         }
-
-        layer.posY += layer.speedY;
-
-        layer.posY %= imgHeight;
-        if (layer.posY < 0) layer.posY += imgHeight;
     } 
     else if (layer.drawType == BackgroundDrawType.TileXY) 
     {
-        let sxf = width / imgWidth;
-        let syf = height / imgHeight;
-        for (let i = -1; i <= syf; i++)
-        {
-            for (let j = -1; j <= sxf; j++)
-            {
-                bgCanvas.image(img, layer.posX + j * imgWidth, layer.posY + i * imgHeight, imgWidth, imgHeight);
+        for (let i = wrap(layer.posX, -imgWidth, 0); i < width; i += imgWidth) {
+            for (let j = wrap(layer.posY, -imgHeight, 0); j < width; j += imgHeight) {
+                bgCanvas.image(img, i, j, imgWidth, imgHeight);
             }
         }
-
-        layer.posX += layer.speedX;
-        layer.posY += layer.speedY;
-        
-        layer.posX %= imgWidth;
-        layer.posY %= imgHeight;
-        if (layer.posX < 0) layer.posX += imgWidth;
-        if (layer.posY < 0) layer.posY += imgHeight;
     }
+
+    layer.posX += layer.speedX;
+    layer.posY += layer.speedY;
 }
 
 function drawBackground() {
