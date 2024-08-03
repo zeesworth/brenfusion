@@ -2765,23 +2765,73 @@ function drawBackgroundLayer(layer) {
     } 
     else if (layer.drawType == BackgroundDrawType.TileX) 
     {
-        for (let i = wrap(layer.posX, -imgWidth, 0); i < width; i += imgWidth) {
-            bgCanvas.image(img, i, layer.posY, imgWidth, imgHeight);
+        let ctx = bgCanvas.drawingContext;
+        ctx.save();
+
+        if (img.gifProperties) {
+            img._animateGif(bgCanvas._pInst);
         }
+
+        var pattern = ctx.createPattern(img.canvas, 'repeat-x');
+        ctx.fillStyle = pattern;
+        ctx.imageSmoothingEnabled = layer.smooth;
+        bgCanvas.noStroke();
+
+        let x = wrap(layer.posX, 0, imgWidth);
+        bgCanvas.push();
+        bgCanvas.translate(x, layer.posY);
+        bgCanvas.scale(layer.scaleX, layer.scaleY);
+        bgCanvas.rect(-x / layer.scaleX, 0, width / layer.scaleX, img.height);
+        bgCanvas.pop();
+
+        ctx.restore();
     } 
     else if (layer.drawType == BackgroundDrawType.TileY) 
     {
-        for (let j = wrap(layer.posY, -imgHeight, 0); j < width; j += imgHeight) {
-            bgCanvas.image(img, layer.posX, j, imgWidth, imgHeight);
+        let ctx = bgCanvas.drawingContext;
+        ctx.save();
+
+        if (img.gifProperties) {
+            img._animateGif(bgCanvas._pInst);
         }
+
+        var pattern = ctx.createPattern(img.canvas, 'repeat-y');
+        ctx.fillStyle = pattern;
+        ctx.imageSmoothingEnabled = layer.smooth;
+        bgCanvas.noStroke();
+
+        let y = wrap(layer.posY, 0, imgHeight);
+        bgCanvas.push();
+        bgCanvas.translate(layer.posX, y);
+        bgCanvas.scale(layer.scaleX, layer.scaleY);
+        bgCanvas.rect(0, -y / layer.scaleY, img.width, height / layer.scaleY);
+        bgCanvas.pop();
+
+        ctx.restore();
     } 
     else if (layer.drawType == BackgroundDrawType.TileXY) 
     {
-        for (let i = wrap(layer.posX, -imgWidth, 0); i < width; i += imgWidth) {
-            for (let j = wrap(layer.posY, -imgHeight, 0); j < width; j += imgHeight) {
-                bgCanvas.image(img, i, j, imgWidth, imgHeight);
-            }
+        let ctx = bgCanvas.drawingContext;
+        ctx.save();
+
+        if (img.gifProperties) {
+            img._animateGif(bgCanvas._pInst);
         }
+
+        var pattern = ctx.createPattern(img.canvas, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.imageSmoothingEnabled = layer.smooth;
+        bgCanvas.noStroke();
+
+        let x = wrap(layer.posX, 0, imgWidth);
+        let y = wrap(layer.posY, 0, imgHeight);
+        bgCanvas.push();
+        bgCanvas.translate(x, y);
+        bgCanvas.scale(layer.scaleX, layer.scaleY);
+        bgCanvas.rect(-x / layer.scaleX, -y / layer.scaleY, width / layer.scaleX, height / layer.scaleY);
+        bgCanvas.pop();
+
+        ctx.restore();
     }
 
     layer.posX += layer.speedX;
