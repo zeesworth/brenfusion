@@ -355,21 +355,23 @@ const BodyPartType = Object.freeze({
     HairBack    : 1,
     TorsoBack   : 2,
     Tail        : 3,
-    ArmBack     : 4,
-    LegBack     : 5,
-    GhostTail   : 6,
-    TorsoUnder  : 7,
-    Torso       : 8,
-    ArmBSameOL  : 9,
-    LegFront    : 10,
-    ArmFront    : 11,
-    Head        : 12,
-    HairFront   : 13,
-    EyeOverHair : 14,
-    HeadFront   : 15,
-    TorsoFront  : 16,
+    HeadBackF   : 4,
+    ArmBack     : 5,
+    LegBack     : 6,
+    GhostTail   : 7,
+    TorsoUnder  : 8,
+    Torso       : 9,
+    ArmBSameOL  : 10,
+    LegFront    : 11,
+    ArmFront    : 12,
+    Head        : 13,
+    HairFront   : 14,
+    EyeOverHair : 15,
+    EyeSameOL   : 16,
+    HeadFront   : 17,
+    TorsoFront  : 18,
 
-    __COUNT     : 17,
+    __COUNT     : 19,
 });
 
 const Character = Object.freeze({
@@ -399,8 +401,9 @@ const Character = Object.freeze({
     Ash       : 23,
     Rac       : 24,
     Brick     : 25,
+    Molly     : 26,
 
-    __COUNT   : 26,
+    __COUNT   : 27,
 });
 
 function getBodyPartName(index) {
@@ -409,6 +412,7 @@ function getBodyPartName(index) {
         case BodyPartType.HairBack    : return "hairb";
         case BodyPartType.TorsoBack   : return "torsob";
         case BodyPartType.Tail        : return "tail";
+        case BodyPartType.HeadBackF   : return "headbf";
         case BodyPartType.ArmBack     : return "armb";
         case BodyPartType.LegBack     : return "legb";
         case BodyPartType.GhostTail   : return "ghosttail";
@@ -420,6 +424,7 @@ function getBodyPartName(index) {
         case BodyPartType.Head        : return "head";
         case BodyPartType.HairFront   : return "hairf";
         case BodyPartType.EyeOverHair : return "eyeoverhair";
+        case BodyPartType.EyeSameOL   : return "eyesameol";
         case BodyPartType.HeadFront   : return "headf";
         case BodyPartType.TorsoFront  : return "torsof";
     }
@@ -453,6 +458,7 @@ function getCharacterName(index) {
         case Character.Ash       : return "ash";
         case Character.Rac       : return "rac";
         case Character.Brick     : return "brick";
+        case Character.Molly     : return "molly";
     }
     return `<${index}>`;
 }
@@ -766,6 +772,17 @@ const bodyPartAttachPoints = [
         /* hair      */ new BodyAttachPointInfo(402,  95),
         /* eyes      */ new BodyAttachPointInfo(421, 203, 1.1),
     ],
+    // molly
+    [
+        /* leg front */ new BodyAttachPointInfo(342, 442, 1.25),
+        /* leg back  */ new BodyAttachPointInfo(502, 443, 1.25),
+        /* arm front */ new BodyAttachPointInfo(341, 243, 1.1),
+        /* arm back  */ new BodyAttachPointInfo(414, 242, 1.1),
+        /* head      */ new BodyAttachPointInfo(400, 230),
+        /* torso     */ new BodyAttachPointInfo(431, 350),
+        /* hair      */ new BodyAttachPointInfo(401,  35, 1.1),
+        /* eyes      */ new BodyAttachPointInfo(417, 193, 1.4),
+    ],
 ];
 // defines how big each character is compared to each other
 const characterScaleFactors = [
@@ -795,6 +812,7 @@ const characterScaleFactors = [
     0.79,  // ash
     1.02,  // rac
     0.92,  // brick
+    1.15,  // molly
 ]
 
 // defines which body parts a character uses, used for image preloading
@@ -805,6 +823,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -816,6 +835,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ true,
         /* TorsoFront  */ false,
     ],
@@ -825,6 +845,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -836,6 +857,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -845,6 +867,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -856,6 +879,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -865,6 +889,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -876,6 +901,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -885,6 +911,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -896,6 +923,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -905,6 +933,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -916,6 +945,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -925,6 +955,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -936,6 +967,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -945,6 +977,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ false,
         /* GhostTail   */ true,
@@ -956,6 +989,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -965,6 +999,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -976,6 +1011,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ true,
     ],
@@ -985,6 +1021,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -996,6 +1033,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1005,6 +1043,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1016,6 +1055,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1025,6 +1065,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1036,6 +1077,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1045,6 +1087,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1056,6 +1099,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1065,6 +1109,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1076,6 +1121,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1085,6 +1131,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1096,6 +1143,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ true,
     ],
@@ -1105,6 +1153,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1116,6 +1165,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1125,6 +1175,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1136,6 +1187,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1145,6 +1197,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1156,6 +1209,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1165,6 +1219,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1176,6 +1231,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ false,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1185,6 +1241,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ true,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ false,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1196,6 +1253,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1205,6 +1263,7 @@ const bodyPartExists = [
         /* HairBack    */ false,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1216,6 +1275,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1225,6 +1285,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1236,6 +1297,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ true,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1245,6 +1307,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1256,6 +1319,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1265,6 +1329,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ false,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1276,6 +1341,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1285,6 +1351,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ true,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1296,6 +1363,7 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
         /* HeadFront   */ true,
         /* TorsoFront  */ false,
     ],
@@ -1305,6 +1373,7 @@ const bodyPartExists = [
         /* HairBack    */ true,
         /* TorsoBack   */ false,
         /* Tail        */ true,
+        /* HeadBackF   */ false,
         /* ArmBack     */ true,
         /* LegBack     */ true,
         /* GhostTail   */ false,
@@ -1316,6 +1385,29 @@ const bodyPartExists = [
         /* Head        */ true,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
+        /* EyeSameOL   */ false,
+        /* HeadFront   */ false,
+        /* TorsoFront  */ false,
+    ],
+    // molly
+    [
+        /* HeadBack    */ true,
+        /* HairBack    */ true,
+        /* TorsoBack   */ false,
+        /* Tail        */ true,
+        /* HeadBackF   */ true,
+        /* ArmBack     */ true,
+        /* LegBack     */ true,
+        /* GhostTail   */ false,
+        /* TorsoUnder  */ false,
+        /* Torso       */ true,
+        /* ArmBSameOL  */ false,
+        /* LegFront    */ true,
+        /* ArmFront    */ true,
+        /* Head        */ true,
+        /* HairFront   */ true,
+        /* EyeOverHair */ false,
+        /* EyeSameOL   */ true,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
@@ -1328,6 +1420,7 @@ const bodyDepthOverrides = [
         BodyPartType.HairBack   ,
         BodyPartType.TorsoBack  ,
         BodyPartType.Tail       ,
+        BodyPartType.HeadBackF  ,
         BodyPartType.ArmBack    ,
         BodyPartType.LegBack    ,
         BodyPartType.GhostTail  ,
@@ -1339,6 +1432,7 @@ const bodyDepthOverrides = [
         BodyPartType.Head       ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -1348,6 +1442,7 @@ const bodyDepthOverrides = [
         BodyPartType.HairBack   ,
         BodyPartType.TorsoBack  ,
         BodyPartType.Tail       ,
+        BodyPartType.HeadBackF  ,
         BodyPartType.ArmBack    ,
         BodyPartType.LegBack    ,
         BodyPartType.LegFront   ,
@@ -1359,6 +1454,7 @@ const bodyDepthOverrides = [
         BodyPartType.Head       ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -1368,6 +1464,7 @@ const bodyDepthOverrides = [
         BodyPartType.HairBack   ,
         BodyPartType.TorsoBack  ,
         BodyPartType.Tail       ,
+        BodyPartType.HeadBackF  ,
         BodyPartType.ArmBack    ,
         BodyPartType.LegBack    ,
         BodyPartType.LegFront   ,
@@ -1379,6 +1476,7 @@ const bodyDepthOverrides = [
         BodyPartType.Head       ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -1388,6 +1486,7 @@ const bodyDepthOverrides = [
         BodyPartType.HairBack   ,
         BodyPartType.TorsoBack  ,
         BodyPartType.Tail       ,
+        BodyPartType.HeadBackF  ,
         BodyPartType.ArmBack    ,
         BodyPartType.LegBack    ,
         BodyPartType.LegFront   ,
@@ -1399,6 +1498,7 @@ const bodyDepthOverrides = [
         BodyPartType.Head       ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -1419,6 +1519,7 @@ const bodyDepthOverrides = [
         BodyPartType.ArmFront   ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -1439,6 +1540,7 @@ const bodyDepthOverrides = [
         BodyPartType.Head       ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
         BodyPartType.HeadFront  ,
         BodyPartType.TorsoFront ,
     ]],
@@ -2654,10 +2756,14 @@ function drawBodyPart(type, char) {
 function drawBodyHead() {
     pushAttachPointStack(pickedTorso, pickedHead, BodyAttachPoint.Head);
     drawBodyPart(BodyPartType.HeadBack , pickedHead );
+    drawBodyPart(BodyPartType.HeadBackF, pickedHead );
     drawBodyPart(BodyPartType.Head     , pickedHead );
     drawBodyPart(BodyPartType.HeadFront, pickedHead );
     if (pickedHair != Character.Herman) {
         drawBodyPart(BodyPartType.EyeOverHair, pickedHead );
+    }
+    if (pickedHair == pickedHead) { 
+        drawBodyPart(BodyPartType.EyeSameOL ,  pickedHead );
     }
 
     if (pickedHair != -1) {
