@@ -1884,6 +1884,9 @@ var backgroundInfoDefs = [
     new BackgroundInfo([ // 16
         new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "jpg"),
     ]),
+    new BackgroundInfo([ // 17
+        new BackgroundLayer(0, 0, 0, 0, 1.0, 1.0, true, BackgroundDrawType.Once, "png"),
+    ]),
 ]
 //#endregion
 var selectedBg = 0;
