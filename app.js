@@ -394,18 +394,16 @@ const Character = Object.freeze({
     Boots     : 15,
     Ollie     : 16,
     Kiwi      : 17,
-    Ware      : 18,
-    Iron      : 19,
-    Soda      : 20,
-    Roxy      : 21,
-    Justo     : 22,
-    Ash       : 23,
-    Rac       : 24,
-    Brick     : 25,
-    Molly     : 26,
-    Pumm      : 27,
+    Iron      : 18,
+    Soda      : 19,
+    Justo     : 20,
+    Ash       : 21,
+    Rac       : 22,
+    Brick     : 23,
+    Molly     : 24,
+    Pumm      : 25,
 
-    __COUNT   : 28,
+    __COUNT   : 26,
 });
 
 function getBodyPartName(index) {
@@ -453,10 +451,8 @@ function getCharacterName(index) {
         case Character.Boots     : return "boots";
         case Character.Ollie     : return "ollie";
         case Character.Kiwi      : return "kiwi";
-        case Character.Ware      : return "ware";
         case Character.Iron      : return "iron";
         case Character.Soda      : return "soda";
-        case Character.Roxy      : return "roxy";
         case Character.Justo     : return "justo";
         case Character.Ash       : return "ash";
         case Character.Rac       : return "rac";
@@ -688,17 +684,6 @@ const bodyPartAttachPoints = [
         /* hair      */ new BodyAttachPointInfo(227,  45),
         /* eyes      */ new BodyAttachPointInfo(234, 137, 1.15),
     ],
-    // ware
-    [
-        /* leg front */ new BodyAttachPointInfo(340, 436),
-        /* leg back  */ new BodyAttachPointInfo(477, 436),
-        /* arm front */ new BodyAttachPointInfo(306, 257),
-        /* arm back  */ new BodyAttachPointInfo(408, 256),
-        /* head      */ new BodyAttachPointInfo(352, 240, 1.1),
-        /* torso     */ new BodyAttachPointInfo(364, 347),
-        /* hair      */ new BodyAttachPointInfo(345,  56, 1.2),
-        /* eyes      */ new BodyAttachPointInfo(360, 203, 1.4),
-    ],
     // iron
     [
         /* leg front */ new BodyAttachPointInfo(179, 337, 1.2),
@@ -720,17 +705,6 @@ const bodyPartAttachPoints = [
         /* torso     */ new BodyAttachPointInfo(232, 175),
         /* hair      */ new BodyAttachPointInfo(227, 40),
         /* eyes      */ new BodyAttachPointInfo(230, 107, 1.15),
-    ],
-    // roxy
-    [
-        /* leg front */ new BodyAttachPointInfo(170, 397),
-        /* leg back  */ new BodyAttachPointInfo(294, 394),
-        /* arm front */ new BodyAttachPointInfo(159, 244),
-        /* arm back  */ new BodyAttachPointInfo(246, 247),
-        /* head      */ new BodyAttachPointInfo(207, 215),
-        /* torso     */ new BodyAttachPointInfo(215, 350),
-        /* hair      */ new BodyAttachPointInfo(203,  93, 0.95),
-        /* eyes      */ new BodyAttachPointInfo(209, 195, 1.1),
     ],
     // justo
     [
@@ -819,10 +793,8 @@ const characterScaleFactors = [
     1.12,  // boots
     0.94,  // ollie
     0.82,  // kiwi
-    1.19,  // ware
     0.93,  // iron
     0.63,  // soda
-    1.01,  // roxy
     0.94,  // justo
     0.79,  // ash
     1.02,  // rac
@@ -1247,29 +1219,6 @@ const bodyPartExists = [
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
-    // ware
-    [
-        /* HeadBack    */ false,
-        /* HairBack    */ true,
-        /* TorsoBack   */ false,
-        /* Tail        */ true,
-        /* HeadBackF   */ false,
-        /* ArmBack     */ true,
-        /* LegBack     */ true,
-        /* GhostTail   */ false,
-        /* TorsoUnder  */ false,
-        /* Torso       */ true,
-        /* ArmBSameOL  */ false,
-        /* LegFront    */ true,
-        /* ArmFront    */ true,
-        /* Head        */ true,
-        /* HeadNoHair  */ false,
-        /* HairFront   */ false,
-        /* EyeOverHair */ false,
-        /* EyeSameOL   */ false,
-        /* HeadFront   */ false,
-        /* TorsoFront  */ false,
-    ],
     // iron
     [
         /* HeadBack    */ false,
@@ -1312,29 +1261,6 @@ const bodyPartExists = [
         /* HeadNoHair  */ false,
         /* HairFront   */ true,
         /* EyeOverHair */ false,
-        /* EyeSameOL   */ false,
-        /* HeadFront   */ false,
-        /* TorsoFront  */ false,
-    ],
-    // roxy
-    [
-        /* HeadBack    */ true,
-        /* HairBack    */ true,
-        /* TorsoBack   */ false,
-        /* Tail        */ true,
-        /* HeadBackF   */ false,
-        /* ArmBack     */ true,
-        /* LegBack     */ true,
-        /* GhostTail   */ false,
-        /* TorsoUnder  */ false,
-        /* Torso       */ true,
-        /* ArmBSameOL  */ false,
-        /* LegFront    */ true,
-        /* ArmFront    */ true,
-        /* Head        */ true,
-        /* HeadNoHair  */ false,
-        /* HairFront   */ true,
-        /* EyeOverHair */ true,
         /* EyeSameOL   */ false,
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
@@ -2274,10 +2200,8 @@ function preload() {
             {id:"bgm_ollie",          src:"sound/bgm_ollie.ogg"},
             {id:"bgm_june",           src:"sound/bgm_june.ogg"},
             {id:"bgm_heather",        src:"sound/bgm_heather.ogg"},
-            {id:"bgm_ware",           src:"sound/bgm_ware.ogg"},
             {id:"bgm_iron",           src:"sound/bgm_iron.ogg"},
             {id:"bgm_soda",           src:"sound/bgm_soda.ogg"},
-            {id:"bgm_roxy",           src:"sound/bgm_roxy.ogg"},
             {id:"bgm_boots",          src:"sound/bgm_boots.ogg"},
             {id:"bgm_rac",            src:"sound/bgm_rac.ogg"},
             {id:"bgm_pumm",           src:"sound/bgm_pumm.ogg"},
@@ -2443,13 +2367,11 @@ const BgmType = Object.freeze({
     Ollie   : 8,
     June    : 9,
     Heather : 10,
-    Ware    : 11,
-    Iron    : 12,
-    Soda    : 13,
-    Roxy    : 14,
-    Boots   : 15,
-    Rac     : 16,
-    Pumm    : 17,
+    Iron    : 11,
+    Soda    : 12,
+    Boots   : 13,
+    Rac     : 14,
+    Pumm    : 15,
 });
 var activeBgm = BgmType.Main;
 
@@ -2468,10 +2390,8 @@ function setActiveBgm(type) {
         case BgmType.Ollie   : id = "bgm_ollie";     break;
         case BgmType.June    : id = "bgm_june";      break;
         case BgmType.Heather : id = "bgm_heather";   break;
-        case BgmType.Ware    : id = "bgm_ware";      break;
         case BgmType.Iron    : id = "bgm_iron";      break;
         case BgmType.Soda    : id = "bgm_soda";      break;
-        case BgmType.Roxy    : id = "bgm_roxy";      break;
         case BgmType.Boots   : id = "bgm_boots";     break;
         case BgmType.Rac     : id = "bgm_rac";       break;
         case BgmType.Pumm    : id = "bgm_pumm";      break;
@@ -2520,10 +2440,6 @@ function changeBgm() {
         setActiveBgm(BgmType.Moth);
     } else if (pickedHead == Character.Heather && changedHead) {
         setActiveBgm(BgmType.Heather);
-    } else if (pickedHead == Character.Ware) {
-        setActiveBgm(BgmType.Ware);
-    } else if (pickedHead == Character.Roxy) {
-        setActiveBgm(BgmType.Roxy);
     } else if (pickedHead == Character.Iron) {
         setActiveBgm(BgmType.Iron);
     } else if (pickedHead == Character.Ollie) {
