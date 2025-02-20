@@ -402,8 +402,9 @@ const Character = Object.freeze({
     Brick     : 23,
     Molly     : 24,
     Pumm      : 25,
+    Rosie     : 26,
 
-    __COUNT   : 26,
+    __COUNT   : 27,
 });
 
 function getBodyPartName(index) {
@@ -459,6 +460,7 @@ function getCharacterName(index) {
         case Character.Brick     : return "brick";
         case Character.Molly     : return "molly";
         case Character.Pumm      : return "pumm";
+        case Character.Rosie     : return "rosie";
     }
     return `<${index}>`;
 }
@@ -772,6 +774,17 @@ const bodyPartAttachPoints = [
         /* hair      */ new BodyAttachPointInfo(198, 76, 0.7),
         /* eyes      */ new BodyAttachPointInfo(217, 163, 0.7),
     ],
+    // rosie
+    [
+        /* leg front */ new BodyAttachPointInfo(164, 570, 1.5),
+        /* leg back  */ new BodyAttachPointInfo(523, 570, 1.5),
+        /* arm front */ new BodyAttachPointInfo(216, 362, 1.25),
+        /* arm back  */ new BodyAttachPointInfo(446, 359, 1.25),
+        /* head      */ new BodyAttachPointInfo(336, 295, 0.9),
+        /* torso     */ new BodyAttachPointInfo(338, 486),
+        /* hair      */ new BodyAttachPointInfo(330, 160, 0.7),
+        /* eyes      */ new BodyAttachPointInfo(345, 260, 0.8),
+    ],
 ];
 // defines how big each character is compared to each other
 const characterScaleFactors = [
@@ -801,6 +814,7 @@ const characterScaleFactors = [
     0.92,  // brick
     1.15,  // molly
     1.54,  // pumm
+    1.54,  // rosie
 ]
 
 // defines which body parts a character uses, used for image preloading
@@ -1403,6 +1417,29 @@ const bodyPartExists = [
         /* HeadFront   */ false,
         /* TorsoFront  */ false,
     ],
+    // rosie
+    [
+        /* HeadBack    */ false,
+        /* HairBack    */ true,
+        /* TorsoBack   */ false,
+        /* Tail        */ true,
+        /* HeadBackF   */ false,
+        /* ArmBack     */ true,
+        /* LegBack     */ true,
+        /* GhostTail   */ false,
+        /* TorsoUnder  */ false,
+        /* Torso       */ true,
+        /* ArmBSameOL  */ false,
+        /* LegFront    */ true,
+        /* ArmFront    */ true,
+        /* Head        */ true,
+        /* HeadNoHair  */ true,
+        /* HairFront   */ true,
+        /* EyeOverHair */ true,
+        /* EyeSameOL   */ false,
+        /* HeadFront   */ false,
+        /* TorsoFront  */ false,
+    ],
 ]
 // defines character-specific overrides in body part draw order
 const bodyDepthOverrides = [
@@ -1559,6 +1596,29 @@ const bodyDepthOverrides = [
         BodyPartType.ArmBSameOL ,
         BodyPartType.LegFront   ,
         BodyPartType.ArmFront   ,
+        BodyPartType.HairFront  ,
+        BodyPartType.EyeOverHair,
+        BodyPartType.EyeSameOL  ,
+        BodyPartType.HeadFront  ,
+        BodyPartType.TorsoFront ,
+    ]],
+    [Character.Rosie,
+    [
+        BodyPartType.HeadBack   ,
+        BodyPartType.HairBack   ,
+        BodyPartType.TorsoBack  ,
+        BodyPartType.Tail       ,
+        BodyPartType.HeadBackF  ,
+        BodyPartType.ArmBack    ,
+        BodyPartType.LegBack    ,
+        BodyPartType.LegFront   ,
+        BodyPartType.GhostTail  ,
+        BodyPartType.TorsoUnder ,
+        BodyPartType.Torso      ,
+        BodyPartType.ArmBSameOL ,
+        BodyPartType.ArmFront   ,
+        BodyPartType.Head       ,
+        BodyPartType.HeadNoHair ,
         BodyPartType.HairFront  ,
         BodyPartType.EyeOverHair,
         BodyPartType.EyeSameOL  ,
@@ -2205,6 +2265,7 @@ function preload() {
             {id:"bgm_boots",          src:"sound/bgm_boots.ogg"},
             {id:"bgm_rac",            src:"sound/bgm_rac.ogg"},
             {id:"bgm_pumm",           src:"sound/bgm_pumm.ogg"},
+            {id:"bgm_rosie",           src:"sound/bgm_rosie.ogg"},
             {id:"pick",               src:"sound/pick.ogg"},
             {id:"herman",             src:"sound/herman.ogg"},
             {id:"dirty",              src:"sound/dirty.ogg"},
@@ -2372,6 +2433,7 @@ const BgmType = Object.freeze({
     Boots   : 13,
     Rac     : 14,
     Pumm    : 15,
+    Rosie   : 16,
 });
 var activeBgm = BgmType.Main;
 
@@ -2395,6 +2457,7 @@ function setActiveBgm(type) {
         case BgmType.Boots   : id = "bgm_boots";     break;
         case BgmType.Rac     : id = "bgm_rac";       break;
         case BgmType.Pumm    : id = "bgm_pumm";      break;
+        case BgmType.Rosie   : id = "bgm_rosie";      break;
     }
 
     if (soundMusic == undefined) {
@@ -2458,6 +2521,8 @@ function changeBgm() {
         setActiveBgm(BgmType.Rac);
     }  else if (pickedHead == Character.Pumm) {
         setActiveBgm(BgmType.Pumm);
+    }  else if (pickedHead == Character.Rosie) {
+        setActiveBgm(BgmType.Rosie);
     } else if (pickedHair == Character.Soda) {
         setActiveBgm(BgmType.Soda);
     } else if (selectedBg == 11) {
